@@ -1,0 +1,20 @@
+<div>
+  <h2>Books</h2>
+
+  <ol class="breadcrumb">
+    <li>Books</li>
+  </ol>
+
+  <!-- Show which filters are active -->
+</div>
+
+<div class='row'>
+  <ul class='col-md-8 list-unstyled books'>
+    <sb-review ng-repeat='review in reviews | booksRatingFilter:rating' review='review'></sb-book>
+  </ul>
+
+  <div class='col-md-3 col-md-offset-1'>
+    <h3>Filter Books</h3>
+    <sb-rating-select reviews='reviews' active-rating='rating'></sb-rating-select>
+  </div>
+</div>

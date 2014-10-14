@@ -1,0 +1,16 @@
+{
+  "name": "goodcache-app",
+  "description": "Reading list application pu;lling from Goodreads.",
+  "version": "0.0.0",
+  "homepage": "http://adamfortuna.com",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "jquery": "~2.1.1",
+    "angular-resource": "~1.2.25",
+    "bootstrap": "~3.2.0",
+    "lodash": "~2.4.1"
+  }
+}
