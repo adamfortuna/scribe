@@ -13,6 +13,7 @@ angular.module('Scribe')
       };
 
       this.setActiveRating = function(rating) {
+        console.log('$scope.activeRating', $scope.activeRating);
         $scope.activeRating = rating;
       };
 

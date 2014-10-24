@@ -3,13 +3,17 @@
     <a href='http://www.amazon.com/gp/product/{{review.book.isbn}}/adamfortuna-20' target='_blank'>
       <img src='{{review.book.image_url}}' />
     </a>
-    <p class='rating'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p>
+    <p class='rating' ng-if='review.rating > 0'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p>
   </div>
 
   <div class='col-md-10'>
-    <h3>{{review.book.title}}</h3>
+    <h3>
+      {{review.book.title}}
+      <span class='pull-right label label-primary' ng-if='isCurrentlyReading(review)'>Currently Reading</span>
+    </h3>
 
-    <p>{{review.body}}</p>
+    <p ng-if='body != ""'>{{body}}</p>
+    <p class='description' ng-if='!review.read_at'>{{review.book.description}}</p>
 
     <p class='meta'>
       <span class='date-read' ng-if='review.read_at || review.started_at'>
@@ -17,7 +21,7 @@
           Read from {{ toDate(review.started_at) | date: 'MMMM d, yyyy'}} to {{toDate(review.read_at) | date: 'MMMM d, yyyy'}}.
         </span>
         <span ng-if='review.started_at && !review.read_at'>
-          Started on {{ toDate(book.started_at) | date: 'MMMM d, yyyy'}}, reading now.
+          Started on {{ toDate(review.started_at) | date: 'MMMM d, yyyy'}}, reading now.
         </span>
       </span>
     </p>

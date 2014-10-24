@@ -1,4 +1,4 @@
-angular.module('Scribe').directive('sbReview', function() {
+angular.module('Scribe').directive('sbReview', ['$sce', function($sce) {
   return {
     replace: true,
     restrict: "E",
@@ -6,11 +6,17 @@ angular.module('Scribe').directive('sbReview', function() {
       review: "="
     },
     templateUrl: "src/reviews/review.html",
-    controller: function($scope) {
-      var toDate = function(date) {
+    controller: ['$scope', function($scope) {
+      $scope.toDate = function toDate(date) {
         return Date.parse(date);
       };
-      $scope.toDate = toDate;
+      $scope.isCurrentlyReading = function currentlyReading(review) {
+        return review.shelves.shelf.name == 'currently-reading';
+      };
+    }],
+    // Todo: Find out why this isn't working
+    link: function(scope) {
+      scope.body = $sce.trustAsHtml(scope.review.body.replace(/^\s+|\s+$/g, ''));
     }
   };
-});
+}]);

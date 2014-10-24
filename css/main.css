@@ -7,10 +7,29 @@
 .label-rating-5:hover {
   background-color: #d0e9c6 !important;
 }
+.label-rating-5.active {
+  background-color: #3c763d !important;
+}
 
 .label-rating-1 {
   background-color: #ebcccc;
 }
 .label-rating-1:hover {
   background-color: #ebcccc !important;
+}
+.label-rating-1.active {
+  background-color: #a94442 !important;
+}
+
+.currently-reading li {
+  position: relative;
+}
+.is-currently-reading {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+.book .description {
+  font-style: italic;
 }

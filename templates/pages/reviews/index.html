@@ -9,9 +9,18 @@
 </div>
 
 <div class='row'>
-  <ul class='col-md-8 list-unstyled books'>
-    <sb-review ng-repeat='review in reviews | booksRatingFilter:rating' review='review'></sb-book>
-  </ul>
+
+  <div class='col-md-8'>
+    <div ng-if='currentlyReadingAnything' class='currently-reading'>
+      <ul class='list-unstyled books'>
+        <sb-review ng-repeat='review in currentlyReading' review='review'></sb-book>
+      </ul>
+    </div>
+
+    <ul class='list-unstyled books'>
+      <sb-review ng-repeat='review in reviews | filter:{rating:rating}' review='review'></sb-book>
+    </ul>
+  </div>
 
   <div class='col-md-3 col-md-offset-1'>
     <h3>Filter Books</h3>
