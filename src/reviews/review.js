@@ -1,4 +1,10 @@
-angular.module('Scribe').directive('sbReview', ['$sce', function($sce) {
+(function() {
+'use strict';
+
+angular.module('Scribe')
+.directive('sbReview', ReviewDirective);
+
+function ReviewDirective($sce) {
   return {
     replace: true,
     restrict: "E",
@@ -6,17 +12,26 @@ angular.module('Scribe').directive('sbReview', ['$sce', function($sce) {
       review: "="
     },
     templateUrl: "src/reviews/review.html",
-    controller: ['$scope', function($scope) {
-      $scope.toDate = function toDate(date) {
-        return Date.parse(date);
-      };
-      $scope.isCurrentlyReading = function currentlyReading(review) {
-        return review.shelves.shelf.name == 'currently-reading';
-      };
-    }],
-    // Todo: Find out why this isn't working
+    controller: ReviewCtrl,
+    controllerAs: 'ctrl',
     link: function(scope) {
+      // Todo: Find out why this isn't working
       scope.body = $sce.trustAsHtml(scope.review.body.replace(/^\s+|\s+$/g, ''));
+      if(scope.review.book.description) {
+        scope.description = $sce.trustAsHtml(scope.review.book.description.replace(/^\s+|\s+$/g, ''));
+      }
     }
   };
-}]);
+}
+ReviewDirective.$inject = ['$sce'];
+
+
+var ReviewCtrl = function(toDate) {
+  this.toDate = toDate;
+  this.isCurrentlyReading = function(review) {
+    return review.shelves.shelf.name == 'currently-reading';
+  };
+};
+ReviewCtrl.$inject = ['toDate'];
+
+}());

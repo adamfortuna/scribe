@@ -1,2 +1,6 @@
-// Declare app level module which depends on ngRoute
+(function() {
+'use strict';
+
 angular.module('Scribe', ['ngRoute', 'ngResource']);
+
+})();

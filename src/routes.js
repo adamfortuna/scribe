@@ -1,4 +1,8 @@
-angular.module('Scribe').config(['$routeProvider', function($routeProvider) {
+(function() {
+'use strict';
+
+angular.module('Scribe')
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
       // redirect to the notes index
@@ -6,14 +10,10 @@ angular.module('Scribe').config(['$routeProvider', function($routeProvider) {
     })
     
     // All books ordered by "date finished desc"
-    // 
-    // Should be able to filter this by:
-    //   Some number of authors
-    //   Some number of genres
-    //   Some number of ratings
     .when('/books', {
       templateUrl: 'templates/pages/reviews/index.html',
-      controller: 'ReviewsIndexController'
+      controller: 'ReviewsIndexController',
+      controllerAs: 'ctrl'
     })
     
     // Single Page for a specific book
@@ -24,3 +24,5 @@ angular.module('Scribe').config(['$routeProvider', function($routeProvider) {
 
     .otherwise({redirectTo: '/'});
 }]);
+
+})();

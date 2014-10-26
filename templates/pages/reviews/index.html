@@ -4,26 +4,31 @@
   <ol class="breadcrumb">
     <li>Books</li>
   </ol>
-
-  <!-- Show which filters are active -->
 </div>
 
 <div class='row'>
-
   <div class='col-md-8'>
-    <div ng-if='currentlyReadingAnything' class='currently-reading'>
-      <ul class='list-unstyled books'>
-        <sb-review ng-repeat='review in currentlyReading' review='review'></sb-book>
-      </ul>
-    </div>
-
     <ul class='list-unstyled books'>
-      <sb-review ng-repeat='review in reviews | filter:{rating:rating}' review='review'></sb-book>
+      <sb-review ng-repeat='review in ctrl.reviews | filter: {rating: currentRating}' review='review'></sb-book>
     </ul>
   </div>
 
   <div class='col-md-3 col-md-offset-1'>
-    <h3>Filter Books</h3>
-    <sb-rating-select reviews='reviews' active-rating='rating'></sb-rating-select>
+    <div>
+      <h3>Filter Books</h3>
+      <sb-rating-select active-rating='currentRating'></sb-rating-select>
+    </div>
+
+    <div ng-if='ctrl.isCurrentlyReading()' class='currently-reading'>
+      <h3>Currently Reading</h3>
+      <ul class='list-unstyled books'>
+        <li ng-repeat='review in ctrl.currentlyReading'>
+          <h4>{{review.book.title}}</h4>
+          <span ng-if='review.started_at != ""'>
+            Started on {{ ctrl.toDate(review.started_at) | date: 'MMMM d, yyyy'}}.
+          </span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -1,6 +1,9 @@
 <div class='sort-menu'>
   <h4>By Rating</h4>
-  <div class='list-group'>
-    <sb-rating-item ng-repeat="rating in ratings" rating="rating"></sb-rating-item>
-  </ul>
+
+  <div class='btn-toolbar' role='toolbar'>
+    <div class='btn-group'>
+      <sb-rating-item ng-repeat='rating in ctrl.ratings' rating='rating'></sb-rating-item>
+    </div>
+  </div>
 </div>

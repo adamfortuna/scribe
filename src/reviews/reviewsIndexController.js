@@ -1,9 +1,21 @@
-angular.module('Scribe').controller('ReviewsIndexController', function($scope, ReviewResource) {
-  $scope.reviews = ReviewResource.query({id: 2419634});
+(function() {
+'use strict';
 
-  $scope.currentlyReading = ReviewResource.query({id: 2419634, shelf: 'currently-reading'});
+angular.module('Scribe')
+.controller('ReviewsIndexController', ReviewsIndexController);
 
-  $scope.currentlyReadingAnything = function() {
-    return $scope.currentlyReading.length > 0;
-  }
-});
+function ReviewsIndexController(ReviewResource, toDate) {
+  this.toDate = toDate;
+  this.reviews = ReviewResource.query({id: 2419634});
+  this.currentlyReading = ReviewResource.query(
+    {id: 2419634, shelf: 'currently-reading'}
+  );
+
+  this.isCurrentlyReading = function() {
+    return this.currentlyReading.length > 0;
+  };
+}
+
+ReviewsIndexController.$inject = ['ReviewResource', 'toDate'];
+
+}());

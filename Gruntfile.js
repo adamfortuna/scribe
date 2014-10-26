@@ -4,13 +4,11 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       options: {
-        separator: ';'
+        separator: ''
       },
       dist: {
         src: [
-          'bower_components/jquery/dist/jquery.js',
-          'bower_components/lodash/dist/lodash.js', 
-          'bower_components/angular/angular.js',  
+          'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js', 
           'bower_components/angular-resource/angular-resource.js', 
           'src/**/*.js'],

@@ -1,31 +1,29 @@
+(function() {
+'use strict';
+
 angular.module('Scribe')
-.directive('sbRatingSelect', ['$filter', function($filter) {
+.directive('sbRatingSelect', function() {
   return {
     replace: true,
     restrict: 'E',
     scope: {
-      activeRating: '=',
-      reviews: '&'
+      activeRating: '='
     },
-    controller: ['$scope', '$filter', function($scope, $filter) {
-      this.getActiveRating = function(){
-        return $scope.activeRating;
-      };
-
-      this.setActiveRating = function(rating) {
-        console.log('$scope.activeRating', $scope.activeRating);
-        $scope.activeRating = rating;
-      };
-
-      this.booksForRating = function(rating) {
-        return $filter('booksRatingFilter')($scope.reviews(), rating);
-      };
-
-      return this;
-    }],
+    controller: RatingCtrl,
+    controllerAs: 'ctrl',
     templateUrl: '/src/rating/select.html',
-    link: function($scope) {
-      $scope.ratings = [5,4,3,2,1];
-    }
+    bindToController: true
   };
-}]);
+});
+
+var RatingCtrl = function() {
+  this.ratings = [5,4,3,2,1,'all'];
+  this.getActiveRating = function() {
+    return this.activeRating;
+  };
+  this.setActiveRating = function(rating) {
+    this.activeRating = (rating === 'all') ? '' : rating;
+  };
+};
+
+})();

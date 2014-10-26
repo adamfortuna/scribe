@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 angular.module('Scribe')
 .filter('booksRatingFilter', ['_', function(_){
   return function(reviews, rating) {
@@ -7,3 +10,5 @@ angular.module('Scribe')
     });
   };
 }]);
+
+})();

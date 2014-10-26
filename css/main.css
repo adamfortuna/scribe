@@ -21,15 +21,17 @@
   background-color: #a94442 !important;
 }
 
-.currently-reading li {
-  position: relative;
+.currently-reading {
+  
 }
-.is-currently-reading {
-  position: absolute;
-  top: 0;
-  right: 20px;
+.currently-reading .book-image,
+.currently-reading .description,
+.currently-reading .review {
+  display: none;
 }
+
 
 .book .description {
   font-style: italic;
+  color: #888;
 }
