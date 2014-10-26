@@ -1,4 +1,20 @@
-.books .book{padding:1em 0;border-bottom:1px solid #b6daf2}.books .book img{width:100px;height:150px}.books .book .rating{padding:10px 0 0 28px;color:#888;font-size:16px}.books .book .rating .rate{font-size:24px;font-color:#666}.books .book h3{margin-top:0}.books .book .date-read{color:#666;font-size:14px;float:right;font-style:italic}.books .book .genres{float:left}.books .book.rating-5 .rating{color:#5cb85c}.books .book.rating-4 .rating{color:#5cb85c}.books .book.rating-3 .rating{color:#f0ad4e}.books .book.rating-2 .rating{color:#d9534f}.books .book.rating-1 .rating{color:#d9534f}#filter-format,#filter-ratings,#filter-read-in-2013{display:none}
+.books .book {
+  padding: 1em 0;
+  border-bottom: 1px solid #b6daf2
+}
+.books .book img {
+  width: 100px;
+  height: 150px;
+}
+.books .book .rating {
+  padding: 10px 0 0 28px;
+  color: #888;
+  font-size: 16px
+}
+.books .book .rating .rate {
+  font-size:24px;
+  font-color:#666
+}.books .book h3{margin-top:0}.books .book .date-read{color:#666;font-size:14px;float:right;font-style:italic}.books .book .genres{float:left}.books .book.rating-5 .rating{color:#5cb85c}.books .book.rating-4 .rating{color:#5cb85c}.books .book.rating-3 .rating{color:#f0ad4e}.books .book.rating-2 .rating{color:#d9534f}.books .book.rating-1 .rating{color:#d9534f}#filter-format,#filter-ratings,#filter-read-in-2013{display:none}
 
 
 .label-rating-5 {
@@ -21,15 +37,15 @@
   background-color: #a94442 !important;
 }
 
-.currently-reading {
-  
-}
+.currently-reading { }
 .currently-reading .book-image,
 .currently-reading .description,
 .currently-reading .review {
   display: none;
 }
-
+.currently-reading .books {
+  border-top: 1px solid #b6daf2;
+}
 
 .book .description {
   font-style: italic;

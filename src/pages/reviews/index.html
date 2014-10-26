@@ -19,16 +19,6 @@
       <sb-rating-select active-rating='currentRating'></sb-rating-select>
     </div>
 
-    <div ng-if='ctrl.isCurrentlyReading()' class='currently-reading'>
-      <h3>Currently Reading</h3>
-      <ul class='list-unstyled books'>
-        <li ng-repeat='review in ctrl.currentlyReading'>
-          <h4>{{review.book.title}}</h4>
-          <span ng-if='review.started_at != ""'>
-            Started on {{ ctrl.toDate(review.started_at) | date: 'MMMM d, yyyy'}}.
-          </span>
-        </li>
-      </ul>
-    </div>
+    <sb-currently-reading></sb-currently-reading>
   </div>
 </div>

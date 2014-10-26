@@ -6,9 +6,9 @@
     <p class='rating' ng-if='review.rating > 0'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p>
   </div>
 
-  <div class='col-md-9 col-md-offset-1'>
+  <div class='col-md-9 col-md-offset-1 col-lg-offset-0'>
     <h3>
-      {{review.book.title}}
+      <a href='#/books/{{review.book.isbn}}'>{{review.book.title}}</a>
     </h3>
 
     <p class='review' ng-if='body != ""' ng-bind-html='body'></p>

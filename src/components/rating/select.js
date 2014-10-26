@@ -11,7 +11,7 @@ angular.module('Scribe')
     },
     controller: RatingCtrl,
     controllerAs: 'ctrl',
-    templateUrl: '/src/rating/select.html',
+    templateUrl: '/src/components/rating/select.html',
     bindToController: true
   };
 });

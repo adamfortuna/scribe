@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('Scribe')
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', '$locationProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
       // redirect to the notes index
@@ -11,15 +11,16 @@ angular.module('Scribe')
     
     // All books ordered by "date finished desc"
     .when('/books', {
-      templateUrl: 'templates/pages/reviews/index.html',
+      templateUrl: '/src/pages/reviews/index.html',
       controller: 'ReviewsIndexController',
       controllerAs: 'ctrl'
     })
     
     // Single Page for a specific book
     .when('/books/:id', {
-      templateUrl: 'templates/pages/reviews/show.html',
-      controller: 'ReviewShowController'
+      templateUrl: '/src/pages/reviews/show.html',
+      controller: 'ReviewShowController',
+      controllerAs: 'ctrl'
     })
 
     .otherwise({redirectTo: '/'});

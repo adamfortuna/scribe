@@ -1,0 +1,6 @@
+<div ng-show='currentlyReadingCtrl.isCurrentlyReading()' class='currently-reading'>
+  <h3>Currently Reading</h3>
+  <ul class='list-unstyled books'>
+    <sb-currently-reading-review ng-repeat='review in currentlyReadingCtrl.reviews' review='review'></sb-currently-reading-review>
+  </ul>
+</div>
