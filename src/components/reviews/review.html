@@ -1,7 +1,7 @@
 <li class='row book rating-{{review.rating}}'>
   <div class='col-md-2 book-image'>
     <a href='http://www.amazon.com/gp/product/{{review.book.isbn}}/adamfortuna-20' target='_blank'>
-      <img src='{{review.book.image_url}}' />
+      <img src='http://images.amazon.com/images/P/{{review.book.isbn}}.01.ZTZZZZZZ.jpg' />
     </a>
     <p class='rating' ng-if='review.rating > 0'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p>
   </div>
@@ -15,6 +15,9 @@
     <p class='description' ng-if='!review.read_at && body == ""' ng-bind-html='description'></p>
 
     <p class='meta'>
+      <a class='author label label-primary' href='' ng-click='ctrl.addFilter("author",review.book.authors.author.name)' >
+        {{review.book.authors.author.name}}
+      </a>
       <span class='date-read' ng-if='review.read_at || review.started_at'>
         <span ng-if='review.read_at && review.started_at'>
           Read from {{ ctrl.toDate(review.started_at) | date: 'MMMM d, yyyy'}} to {{ctrl.toDate(review.read_at) | date: 'MMMM d, yyyy'}}.

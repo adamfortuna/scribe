@@ -23,6 +23,7 @@ function ReviewDirective($sce) {
         }
       };
 
+      // Really want to figure out better way to do this at a higher level.
       if(scope.review.$promise) {
         scope.review.$promise.then(setReview);
       } else {
@@ -34,12 +35,15 @@ function ReviewDirective($sce) {
 ReviewDirective.$inject = ['$sce'];
 
 
-var ReviewCtrl = function(toDate) {
+var ReviewCtrl = function(toDate, FilterService) {
   this.toDate = toDate;
   this.isCurrentlyReading = function(review) {
     return review.shelves.shelf.name == 'currently-reading';
   };
+  this.addFilter = function(name, value) {
+    FilterService.applyFilter(name, value);
+  }.bind(FilterService);
 };
-ReviewCtrl.$inject = ['toDate'];
+ReviewCtrl.$inject = ['toDate', 'FilterService'];
 
 }());

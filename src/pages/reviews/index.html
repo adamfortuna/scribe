@@ -1,23 +1,26 @@
 <div>
   <h2>Books</h2>
 
-  <ol class="breadcrumb">
-    <li>Books</li>
+  <ol class='breadcrumb'>
+    <li><a href='#/books'>Books</a></li>
   </ol>
 </div>
 
 <div class='row'>
   <div class='col-md-8'>
     <ul class='list-unstyled books'>
-      <sb-review ng-repeat='review in ctrl.reviews | filter: {rating: currentRating}' review='review'></sb-book>
+      <sb-review ng-repeat='review in ctrl.reviews | filter: ctrl.filter' review='review'></sb-book>
     </ul>
   </div>
 
   <div class='col-md-3 col-md-offset-1'>
+    <sb-filters filter='ctrl.filter'></sb-filters>
+
     <div>
       <h3>Filter Books</h3>
-      <sb-rating-select active-rating='currentRating'></sb-rating-select>
+      <sb-rating-select active-rating='ctrl.filter.rating'></sb-rating-select>
     </div>
+
 
     <sb-currently-reading></sb-currently-reading>
   </div>
