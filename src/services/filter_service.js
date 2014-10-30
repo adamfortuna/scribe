@@ -48,6 +48,8 @@ function FilterService($routeParams, $location) {
     } else {
       delete filter.book;
     }
+
+    setLocation();
   }
 
   function setLocation() {
