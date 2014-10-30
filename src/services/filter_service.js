@@ -4,15 +4,29 @@
 angular.module('Scribe')
 .factory('FilterService', FilterService);
 
-function FilterService($routeParams) {
-  var filter = {};
+function FilterService($routeParams, $location) {
+  var filter = {},
+      location = $location;
 
   // Setup the initial filters
   if($routeParams.author) {
     applyFilter('author', $routeParams.author);
   }
   if($routeParams.rating) {
-    applyFilter('ratig', $routeParams.rating);
+    applyFilter('rating', $routeParams.rating);
+  }
+
+  return {
+    filter: filter,
+    hasFilters: hasFilter,
+    applyFilter: applyFilter,
+    clearFilter: clearFilter
+  };
+
+  // Private
+
+  function hasFilter() {
+    return filter.rating || filter.book;
   }
 
   function applyFilter(name, value) {
@@ -24,6 +38,8 @@ function FilterService($routeParams) {
       filter.book.authors.author = filter.book.authors.author || {};
       filter.book.authors.author.name = value;
     }
+
+    setLocation();
   }
 
   function clearFilter(name, value) {
@@ -34,15 +50,21 @@ function FilterService($routeParams) {
     }
   }
 
-  return {
-    filter: filter,
-    hasFilters: function() {
-      return filter.rating || filter.book;
-    },
-    applyFilter: applyFilter,
-    clearFilter: clearFilter
-  };
+  function setLocation() {
+    location.url('/books?'+queryString());
+  }
+
+  function queryString() {
+    var query = [];
+    if(filter.book && filter.book.authors && filter.book.authors.author && filter.book.authors.author.name) {
+      query.push('author='+filter.book.authors.author.name);
+    }
+    if(filter.rating) {
+     query.push('rating='+filter.rating); 
+    }
+    return query.join('&');
+  }
 }
-FilterService.$inject = ['$routeParams'];
+FilterService.$inject = ['$routeParams', '$location'];
 
 }());

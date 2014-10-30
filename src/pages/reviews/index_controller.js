@@ -4,10 +4,10 @@
 angular.module('Scribe')
 .controller('ReviewsIndexController', ReviewsIndexController);
 
-function ReviewsIndexController(ReviewResource) {
-  this.reviews = ReviewResource.query();
+function ReviewsIndexController(reviewsPrepService) {
+  this.reviews = reviewsPrepService;
 }
 
-ReviewsIndexController.$inject = ['ReviewResource'];
+ReviewsIndexController.$inject = ['reviewsPrepService'];
 
 }());

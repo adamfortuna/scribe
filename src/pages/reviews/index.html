@@ -7,16 +7,16 @@
 </div>
 
 <div class='row'>
-  <div class='col-md-8'>
+  <div class='col-md-8 col-sm-8'>
     <ul class='list-unstyled books'>
       <sb-review ng-repeat='review in ctrl.reviews | filter: ctrl.filter' review='review'></sb-book>
     </ul>
   </div>
 
-  <div class='col-md-3 col-md-offset-1'>
+  <div class='col-md-3 col-md-offset-1 col-sm-4'>
     <h3>Filter Books</h3>
     <sb-filters filter='ctrl.filter'></sb-filters>
-    <sb-rating-select active-rating='ctrl.filter.rating'></sb-rating-select>
+    <sb-rating-select></sb-rating-select>
     <sb-currently-reading></sb-currently-reading>
   </div>
 </div>

@@ -1,12 +1,12 @@
 <li class='row book rating-{{review.rating}}'>
-  <div class='col-md-2 book-image'>
+  <div class='col-md-2 book-image col-xs-2'>
     <a href='http://www.amazon.com/gp/product/{{review.book.isbn}}/adamfortuna-20' target='_blank'>
       <img src='http://images.amazon.com/images/P/{{review.book.isbn}}.01.ZTZZZZZZ.jpg' />
     </a>
     <p class='rating' ng-if='review.rating > 0'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p>
   </div>
 
-  <div class='col-md-9 col-md-offset-1 col-lg-offset-0'>
+  <div class='col-md-9 col-md-offset-1 col-lg-offset-0 col-lg-10 col-xs-8 col-xs-offset-1'>
     <h3>
       <a href='#/books/{{review.book.isbn}}'>{{review.book.title}}</a>
     </h3>

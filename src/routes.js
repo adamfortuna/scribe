@@ -13,7 +13,12 @@ angular.module('Scribe')
     .when('/books', {
       templateUrl: '/src/pages/reviews/index.html',
       controller: 'ReviewsIndexController',
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: {
+        reviewsPrepService: ['ReviewResource', function(ReviewResource) {
+          return ReviewResource.query();
+        }]
+      }
     })
     
     // Single Page for a specific book
