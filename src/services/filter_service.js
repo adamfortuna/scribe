@@ -20,7 +20,8 @@ function FilterService($routeParams, $location) {
     filter: filter,
     hasFilters: hasFilter,
     applyFilter: applyFilter,
-    clearFilter: clearFilter
+    clearFilter: clearFilter,
+    getRating: getRating
   };
 
   // Private
@@ -65,6 +66,10 @@ function FilterService($routeParams, $location) {
      query.push('rating='+filter.rating); 
     }
     return query.join('&');
+  }
+
+  function getRating() {
+    return filter.rating;
   }
 }
 FilterService.$inject = ['$routeParams', '$location'];
