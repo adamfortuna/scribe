@@ -15,6 +15,9 @@ function FilterService($routeParams, $location) {
   if($routeParams.rating) {
     applyFilter('rating', $routeParams.rating);
   }
+  if($routeParams.genre) {
+    applyFilter('genre', $routeParams.genre);
+  }
 
   return {
     filter: filter,
@@ -33,7 +36,10 @@ function FilterService($routeParams, $location) {
   function applyFilter(name, value) {
     if(name === 'rating') {
       filter[name] = value;
-    } else {
+    } else if(name === 'genre') {
+      filter.book = filter.book || {};
+      filter.book.genres = value;
+    } else if(name === 'author') {
       filter.book = filter.book || {};
       filter.book.authors = filter.book.authors || {};
       filter.book.authors.author = filter.book.authors.author || {};
@@ -44,10 +50,16 @@ function FilterService($routeParams, $location) {
   }
 
   function clearFilter(name, value) {
-    if(name === 'rating') {
-      filter[name] = '';
+    if(name === 'genre') {
+      if(filter.book) {
+        delete filter.book;
+      }
+    } else if(name === 'author') {
+      if(filter.book) {
+        delete filter.book.authors;
+      }
     } else {
-      delete filter.book;
+      delete filter[name];
     }
 
     setLocation();
@@ -64,6 +76,9 @@ function FilterService($routeParams, $location) {
     }
     if(filter.rating) {
      query.push('rating='+filter.rating); 
+    }
+    if(filter.book && filter.book.genres) {
+     query.push('genre='+filter.book.genres); 
     }
     return query.join('&');
   }

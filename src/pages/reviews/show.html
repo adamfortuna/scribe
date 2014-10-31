@@ -15,7 +15,16 @@
       <li class='row book'>
         <div class='col-xs-9 col-xs-offset-3 col-md-8 col-md-offset-3 col-lg-offset-2'>
           <h3>More From <a href='{{ctrl.review.link}}' target='_blank'>Goodreads</a></h3>
-          <div class='description' ng-bind-html='ctrl.description'></p>
+          <div class='description' ng-bind-html='ctrl.description'></div>
+
+          <div>
+            <h3>Genres</h3>
+            <ul class='list-unstyled list-inline'>
+              <li ng-repeat='genre in ctrl.review.book.genres'>
+                <a class='label label-primary' href='' ng-click='ctrl.addFilter("genre",genre)'>{{genre}}</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </li>
     </ul>

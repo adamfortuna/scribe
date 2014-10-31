@@ -7,5 +7,9 @@
     <li ng-if='ctrl.filter.book.authors.author.name'>
       <a class='label label-primary' ng-click='ctrl.clearFilter("author", ctrl.filter.book.authors.author.name)'>Author: {{ctrl.filter.book.authors.author.name}} <i class='glyphicon glyphicon-remove'></i> </a>
     </li>
+
+    <li ng-if='ctrl.filter.book.genres'>
+      <a class='label label-primary' ng-click='ctrl.clearFilter("genre", ctrl.filter.book.genres)'>Genre: {{ctrl.filter.book.genres}} <i class='glyphicon glyphicon-remove'></i> </a>
+    </li>
   </ul>
 </div>
