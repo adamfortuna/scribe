@@ -11,6 +11,8 @@ function SafeHtmlDirective($sce) {
       sbSafeHtml: "@"
     },
     template: "<div ng-bind-html='safeHtml'></div>",
+    // Todo: Figure out how to make this a $compile 
+    //       directive rather than using link.
     link: function(scope, element, attrs) {
       var unregister = scope.$watch('sbSafeHtml', setHtml);
 

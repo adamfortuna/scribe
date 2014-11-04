@@ -1,6 +1,7 @@
 (function() {
 'use strict';
 
+// Todo: Make this a service not a factory
 angular.module('Scribe')
 .factory('FilterService', FilterService);
 
@@ -24,13 +25,24 @@ function FilterService($routeParams, $location) {
     hasFilters: hasFilter,
     applyFilter: applyFilter,
     clearFilter: clearFilter,
-    getRating: getRating
+    getRating: getRating,
+    hasFilter: hasFilter
   };
 
   // Private
 
   function hasFilter() {
-    return filter.rating || filter.book;
+    return hasFilter('rating') || hasFilter('genre') || hasFilter('author');
+  }
+
+  function hasFilter(name) {
+    if(name === 'rating') {
+      return typeof(filter[name]) !== 'undefined';
+    } else if(name === 'genre') {
+      return filter.book && filter.book.genres;
+    } else if(name === 'author') {
+      return filter.book && filter.book.authors && filter.book.authors.author && filter.book.authors.author.name;
+    }
   }
 
   function applyFilter(name, value) {
@@ -62,6 +74,11 @@ function FilterService($routeParams, $location) {
       delete filter[name];
     }
 
+    if(!hasFilter('genre') && !hasFilter('author')) {
+     delete filter.book; 
+    }
+
+    console.log('filter', filter);
     setLocation();
   }
 
