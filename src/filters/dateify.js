@@ -2,10 +2,12 @@
 'use strict';
 
 angular.module('Scribe')
-.factory('toDate', function() {
+.filter('dateify', Dateify);
+
+function Dateify() {
   return function(date) {
     return Date.parse(date);
   };
-});
+}
 
-})();
+}());

@@ -11,8 +11,8 @@
       <a href='#/books/{{review.book.isbn}}'>{{review.book.title}}</a>
     </h3>
 
-    <p class='review' ng-if='body != ""' ng-bind-html='body'></p>
-    <p class='description' ng-if='!review.read_at && body == ""' ng-bind-html='description'></p>
+    <p class='review' ng-if='body != ""' sb-safe-html='{{review.body}}'></p>
+    <p class='description' ng-if='!review.read_at && body == ""' sb-safe-html='{{review.book.description}}'></p>
 
     <p class='meta'>
       <a class='author label label-primary' href='' ng-click='ctrl.addFilter("author",review.book.authors.author.name)' >
@@ -20,10 +20,10 @@
       </a>
       <span class='date-read' ng-if='review.read_at || review.started_at'>
         <span ng-if='review.read_at && review.started_at'>
-          Read from {{ ctrl.toDate(review.started_at) | date: 'MMMM d, yyyy'}} to {{ctrl.toDate(review.read_at) | date: 'MMMM d, yyyy'}}.
+          Read from {{ review.started_at | dateify | date: 'MMMM d, yyyy'}} to {{review.read_at | dateify | date: 'MMMM d, yyyy'}}.
         </span>
         <span ng-if='review.started_at && !review.read_at'>
-          Started on {{ ctrl.toDate(review.started_at) | date: 'MMMM d, yyyy'}}, reading now.
+          Started on {{ review.started_at | dateify | date: 'MMMM d, yyyy'}}, reading now.
         </span>
       </span>
     </p>

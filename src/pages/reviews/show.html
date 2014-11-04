@@ -15,7 +15,7 @@
       <li class='row book'>
         <div class='col-xs-9 col-xs-offset-3 col-md-8 col-md-offset-3 col-lg-offset-2'>
           <h3>More From <a href='{{ctrl.review.link}}' target='_blank'>Goodreads</a></h3>
-          <div class='description' ng-bind-html='ctrl.description'></div>
+          <div class='description' sb-safe-html='{{ctrl.review.book.description}}'></div>
 
           <div>
             <h3>Genres</h3>

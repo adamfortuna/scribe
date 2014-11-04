@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('Scribe')
-.config(['$routeProvider', '$locationProvider', function($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
       // redirect to the notes index

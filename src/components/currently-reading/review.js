@@ -12,10 +12,7 @@ function CurrentlyReadingReview() {
     },
     replace: true,
     templateUrl: '/src/components/currently-reading/review.html',
-    controllerAs: 'ctrl',
-    controller: ['toDate', function(toDate) {
-      this.toDate = toDate;
-    }]
+    controllerAs: 'ctrl'
   };
 }
 
