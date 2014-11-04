@@ -5,80 +5,57 @@
 angular.module('Scribe')
 .factory('FilterService', FilterService);
 
-function FilterService($routeParams, $location) {
+function FilterService($routeParams, $location, _) {
   var filter = {},
-      location = $location;
+      location = $location,
+      filterMap = {
+        'rating': 'rating',
+        'genre':  'book.genres',
+        'author': 'book.authors.author.name'
+      };
 
-  // Setup the initial filters
-  if($routeParams.author) {
-    applyFilter('author', $routeParams.author);
-  }
-  if($routeParams.rating) {
-    applyFilter('rating', $routeParams.rating);
-  }
-  if($routeParams.genre) {
-    applyFilter('genre', $routeParams.genre);
-  }
+  // On the first load, apply all filters from the URL
+  _.each(_.keys(filterMap), function(filterName) {
+    if($routeParams[filterName]) {
+      applyFilter(filterName, $routeParams[filterName]);
+    }
+  });
 
   return {
     filter: filter,
-    hasFilters: hasFilter,
+    hasFilters: hasFilters,
     applyFilter: applyFilter,
     clearFilter: clearFilter,
-    getRating: getRating,
-    hasFilter: hasFilter
+    getFilter: getFilter,
+    hasFilter: hasFilter,
+    availableFilters: _.keys(filterMap)
   };
 
   // Private
 
-  function hasFilter() {
-    return hasFilter('rating') || hasFilter('genre') || hasFilter('author');
+  // Are any filters active?
+  function hasFilters() {
+    return _.any(filterMap, function(filterName) {
+      hasFilter(name);      
+    });
   }
 
+  // Is the specific filter active?
   function hasFilter(name) {
-    if(name === 'rating') {
-      return typeof(filter[name]) !== 'undefined';
-    } else if(name === 'genre') {
-      return filter.book && filter.book.genres;
-    } else if(name === 'author') {
-      return filter.book && filter.book.authors && filter.book.authors.author && filter.book.authors.author.name;
-    }
+    return _.deepGet(filter, filterMap[name]);
   }
 
   function applyFilter(name, value) {
-    if(name === 'rating') {
-      filter[name] = value;
-    } else if(name === 'genre') {
-      filter.book = filter.book || {};
-      filter.book.genres = value;
-    } else if(name === 'author') {
-      filter.book = filter.book || {};
-      filter.book.authors = filter.book.authors || {};
-      filter.book.authors.author = filter.book.authors.author || {};
-      filter.book.authors.author.name = value;
-    }
-
+    _.deepSet(filter, filterMap[name], value);
     setLocation();
   }
 
+  // Todo: Allow for multiple values for each filter
+  // Note: value is unused at this time
   function clearFilter(name, value) {
-    if(name === 'genre') {
-      if(filter.book) {
-        delete filter.book;
-      }
-    } else if(name === 'author') {
-      if(filter.book) {
-        delete filter.book.authors;
-      }
-    } else {
-      delete filter[name];
-    }
-
-    if(!hasFilter('genre') && !hasFilter('author')) {
-     delete filter.book; 
-    }
-
-    console.log('filter', filter);
+    if(!hasFilter(name)) { return; }
+    _.deepDelete(filter, filterMap[name]);
+    _.deepRemoveEmpty(filter);
     setLocation();
   }
 
@@ -87,23 +64,19 @@ function FilterService($routeParams, $location) {
   }
 
   function queryString() {
-    var query = [];
-    if(filter.book && filter.book.authors && filter.book.authors.author && filter.book.authors.author.name) {
-      query.push('author='+filter.book.authors.author.name);
-    }
-    if(filter.rating) {
-     query.push('rating='+filter.rating); 
-    }
-    if(filter.book && filter.book.genres) {
-     query.push('genre='+filter.book.genres); 
-    }
-    return query.join('&');
+    var query = _.collect(_.keys(filterMap), function(name) {
+      if(hasFilter(name)) {
+        return name+'='+_.deepGet(filter, filterMap[name]);
+      }
+    });
+
+    return _.compact(query).join('&');
   }
 
-  function getRating() {
-    return filter.rating;
+  function getFilter(name) {
+    return _.deepGet(filter, filterMap[name]);
   }
 }
-FilterService.$inject = ['$routeParams', '$location'];
+FilterService.$inject = ['$routeParams', '$location', '_'];
 
 }());

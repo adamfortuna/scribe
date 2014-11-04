@@ -18,7 +18,7 @@ var RatingCtrl = function(FilterService) {
   this.ratings = [5,4,3,2,1];
 
   this.getActiveRating = function() {
-    return FilterService.getRating();
+    return FilterService.getFilter('rating');
   };
 
   this.setActiveRating = function(rating) {

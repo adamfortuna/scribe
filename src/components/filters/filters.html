@@ -1,15 +1,9 @@
 <div>
   <ul class='list-inline'>
-    <li ng-if='ctrl.filter.rating'>
-      <a ng-href='' class='label label-primary' ng-click='ctrl.clearFilter("rating",ctrl.filter.rating)'>Rating: {{ctrl.filter.rating}} <i class='glyphicon glyphicon-remove'></i> </a>
-    </li>
-
-    <li ng-if='ctrl.filter.book.authors.author.name'>
-      <a class='label label-primary' ng-click='ctrl.clearFilter("author", ctrl.filter.book.authors.author.name)'>Author: {{ctrl.filter.book.authors.author.name}} <i class='glyphicon glyphicon-remove'></i> </a>
-    </li>
-
-    <li ng-if='ctrl.filter.book.genres'>
-      <a class='label label-primary' ng-click='ctrl.clearFilter("genre", ctrl.filter.book.genres)'>Genre: {{ctrl.filter.book.genres}} <i class='glyphicon glyphicon-remove'></i> </a>
+    <li ng-repeat='filter in ctrl.availableFilters' ng-if='ctrl.hasFilter(filter)'>
+      <a ng-href='' ng-click='ctrl.clearFilter(filter)' class='label label-primary'>
+        {{filter | capitalize}}: {{ctrl.getFilter(filter)}} <i class='glyphicon glyphicon-remove'></i>
+      </a>
     </li>
   </ul>
 </div>

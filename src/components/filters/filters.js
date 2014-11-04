@@ -2,9 +2,9 @@
 'use strict';
 
 angular.module('Scribe')
-.directive('sbFilters', sbFilters);
+.directive('sbFilters', FiltersDirective);
 
-function sbFilters() {
+function FiltersDirective() {
   return {
     restrict: 'E',
     scope: {
@@ -18,16 +18,13 @@ function sbFilters() {
   };
 }
 
-
 var FiltersController = function(FilterService) {
   this.filter = FilterService.filter;
-
-  this.clearFilter = function(filterName, filterValue) {
-    FilterService.clearFilter(filterName, filterValue);
-  };
-  this.hasFilters = function() {
-    return FilterService.hasFilters();
-  };
+  this.availableFilters = FilterService.availableFilters;
+  this.hasFilter = FilterService.hasFilter;
+  this.getFilter = FilterService.getFilter;
+  this.clearFilter = FilterService.clearFilter;
+  this.hasFilters = FilterService.hasFilters;
 };
 FiltersController.$inject = ['FilterService'];
 
