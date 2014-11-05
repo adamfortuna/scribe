@@ -1,15 +1,29 @@
 .books .book {
   padding: 1em 0;
-  border-bottom: 1px solid #b6daf2
+  border-bottom: 1px solid #b6daf2;
+  min-height: 180px;
+}
+.books .book h3 {
+  color: #555;
+}
+.books .book-image {
+  position: relative;
 }
 .books .book img {
   width: 100px;
   height: 150px;
+  border: 1px solid #888;
+  top: 0;
+  left: 0;
+  position: absolute;
 }
 .books .book .rating {
   padding: 10px 0 0 28px;
   color: #888;
   font-size: 16px
+}
+.books .book .meta a.author {
+  font-size: 12px;
 }
 .books .book .rating .rate {
   font-size:24px;
