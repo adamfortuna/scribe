@@ -51,3 +51,16 @@
   font-style: italic;
   color: #888;
 }
+
+
+
+.btn-rating-1 { background-color: #fdd; }
+.btn-rating-1:hover, .btn-rating-1.active { background-color: #dcc; }
+.btn-rating-2 { background-color: #fee; }
+.btn-rating-2:hover, .btn-rating-2.active { background-color: #edd; }
+.btn-rating-3 { background-color: #ffe; }
+.btn-rating-3:hover, .btn-rating-3.active { background-color: #ffc; }
+.btn-rating-4 { background-color: #efe; }
+.btn-rating-4:hover, .btn-rating-4.active { background-color: #ded; }
+.btn-rating-5 { background-color: #dfd; }
+.btn-rating-5:hover, .btn-rating-5.active { background-color: #cdc; }

@@ -4,7 +4,7 @@
 angular.module('Scribe')
 .directive('sbRatingItem', RatingItem);
 
-function RatingItem(colorChooser) {
+function RatingItem() {
   return {
     restrict: 'E',
     require: '^sbRatingSelect',
@@ -17,11 +17,12 @@ function RatingItem(colorChooser) {
       scope.makeActive = function() {
         ctrl.setActiveRating(scope.rating);
       };
-      scope.label = colorChooser(scope.rating);
+
+      scope.isActive = function() {
+        return ctrl.getActiveRating() == scope.rating;
+      };
     }
   };
 }
-RatingItem.$inject = ['colorChooser'];
-
 
 })();

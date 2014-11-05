@@ -52,11 +52,11 @@ function deepRemoveEmpty(root, undef) {
       delete parent[key];
       removeProps(root);
     }
-  }
+  };
 
   removeProps(root);
   return root;
-};
+}
 
 
 angular.module('Scribe')
