@@ -9,12 +9,6 @@ angular.module('Scribe')
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      // redirect to the notes index
-      redirectTo: '/books'
-    })
-    
-    // All books ordered by "date finished desc"
-    .when('/books', {
       templateUrl: 'index.html',
       controller: 'ReviewsIndexController',
       controllerAs: 'ctrl',

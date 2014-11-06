@@ -60,7 +60,7 @@ function FilterService($routeParams, $location, _) {
   }
 
   function setLocation() {
-    location.url('/books?'+queryString());
+    location.url('/?'+queryString());
   }
 
   function queryString() {

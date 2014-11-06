@@ -17,7 +17,7 @@ function FiltersDirective() {
     bindToController: true,
     template: "\
       <div> \
-        <ul class='list-inline'> \
+        <ul class='list-inline filters'> \
           <li ng-repeat='filter in ctrl.availableFilters' ng-if='ctrl.hasFilter(filter)'> \
             <a ng-href='' ng-click='ctrl.clearFilter(filter)' class='label label-primary'> \
               {{filter | capitalize}}: {{ctrl.getFilter(filter)}} <i class='glyphicon glyphicon-remove'></i> \

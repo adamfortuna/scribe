@@ -2,11 +2,10 @@
 'use strict';
 
 angular.module('Scribe', ['ngRoute', 'ngResource'])
-.config(['$httpProvider', 'settingsProvider', config]);
+.config(['$httpProvider', config]);
 
-function config($httpProvider, settingsProvider) {
+function config($httpProvider) {
   $httpProvider.defaults.cache = true;
-  settingsProvider.setId(2419634);
 }
 
 })();

@@ -4,7 +4,7 @@
 
 var template = " \
   <li class='row book rating-{{review.rating}}'> \
-    <div class='col-md-2 book-image col-xs-2'> \
+    <div class='col-md-3 book-image col-xs-3'> \
       <a href='http://www.amazon.com/gp/product/{{review.book.isbn}}/adamfortuna-20' class='book-image' target='_blank'> \
         <img ng-src='{{review.book.image_url}}' /> \
         <img ng-src='http://images.amazon.com/images/P/{{review.book.isbn}}.01.ZTZZZZZZ.jpg' /> \
@@ -12,7 +12,7 @@ var template = " \
       <p class='rating' ng-if='review.rating > 0'><span class='rate'>{{review.rating}}</span> / <span class='rate-outof'>5</span></p> \
     </div> \
  \
-    <div class='col-md-9 col-md-offset-1 col-lg-offset-0 col-lg-10 col-xs-8 col-xs-offset-1'> \
+    <div class='col-md-8 col-md-offset-1 col-lg-offset-0 col-lg-9 col-xs-7 col-xs-offset-1'> \
       <h3>{{review.book.title}}</h3> \
  \
       <p class='review' ng-if='body != \"\"' sb-safe-html='{{review.body}}'></p> \
