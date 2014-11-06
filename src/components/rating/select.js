@@ -1,5 +1,6 @@
 (function() {
 'use strict';
+/*jshint multistr: true */
 
 angular.module('Scribe')
 .directive('sbRatingSelect', function() {
@@ -9,8 +10,16 @@ angular.module('Scribe')
     scope: {},
     controller: RatingCtrl,
     controllerAs: 'ctrl',
-    templateUrl: '/src/components/rating/select.html',
-    bindToController: true
+    bindToController: true,
+    template: "\
+      <div class='rating-select'> \
+        <h4>By Rating</h4> \
+        <div class='btn-toolbar' role='toolbar'> \
+          <div class='btn-group'> \
+            <sb-rating-item ng-repeat='rating in ctrl.ratings' rating='rating'></sb-rating-item> \
+          </div> \
+        </div> \
+      </div>"
   };
 });
 

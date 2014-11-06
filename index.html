@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="Scribe" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="Scribe" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="Scribe" class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html lang='en' ng-app='Scribe' class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
+<!--[if IE 7]>         <html lang='en' ng-app='Scribe' class='no-js lt-ie9 lt-ie8'> <![endif]-->
+<!--[if IE 8]>         <html lang='en' ng-app='Scribe' class='no-js lt-ie9'> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en" ng-app="Scribe">
+<html lang='en' ng-app='Scribe'>
 <!--<![endif]-->
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Scribe</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <meta name='description' content=''>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css' />
+    <link href='css/main.css' rel='stylesheet' type='text/css' />
     <base href='/'></base>
   </head>
 
@@ -23,6 +23,66 @@
       <div ng-view></div>
     </div>
 
-    <script src="dist/scribe.js"></script>
+    <script type='text/ng-template' id='index.html'>
+      <div>
+        <h2>Books</h2>
+
+        <ol class='breadcrumb'>
+          <li>Books</li>
+        </ol>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-8 col-sm-8'>
+          <ul class='list-unstyled books'>
+            <sb-review ng-repeat='review in ctrl.reviews | filter: ctrl.filter' review='review'></sb-book>
+          </ul>
+        </div>
+
+        <div class='col-md-3 col-md-offset-1 col-sm-4'>
+          <h3>Filter Books</h3>
+          <sb-filters filter='ctrl.filter'></sb-filters>
+          <sb-rating-select></sb-rating-select>
+          <sb-currently-reading></sb-currently-reading>
+        </div>
+      </div>
+    </script>
+
+    <script type='text/ng-template' id='show.html'>
+      <div>
+        <h2>Books</h2>
+
+        <ol class='breadcrumb'>
+          <li><a href='#/books'>Books</a></li>
+          <li class='active'>{{ctrl.review.book.title}}</li>
+        </ol>
+      </div>
+
+      <div class='row'>
+        <div class='col-md-12'>
+          <ul class='books list-unstyled'>
+            <sb-review review='ctrl.review'></sb-review>
+
+            <li class='row book'>
+              <div class='col-xs-9 col-xs-offset-3 col-md-8 col-md-offset-3 col-lg-offset-2'>
+                <h3>More From <a href='{{ctrl.review.link}}' target='_blank'>Goodreads</a></h3>
+                <div class='description' sb-safe-html='{{ctrl.review.book.description}}'></div>
+
+                <div>
+                  <h3>Genres</h3>
+                  <ul class='list-unstyled list-inline'>
+                    <li ng-repeat='genre in ctrl.review.book.genres'>
+                      <a class='label label-primary' href='' ng-click='ctrl.addFilter("genre",genre)'>{{genre}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </script>
+
+    <script src='dist/scribe.js'></script>
   </body>
 </html>

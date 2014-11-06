@@ -1,5 +1,7 @@
 (function() {
 'use strict';
+/*jshint multistr: true */
+
 
 angular.module('Scribe')
 .directive('sbRatingItem', RatingItem);
@@ -12,7 +14,8 @@ function RatingItem() {
       rating: '='
     },
     replace: true,
-    templateUrl: '/src/components/rating/item.html',
+    template:
+      "<button type='button' class='btn btn-default btn-rating-{{rating}}' ng-class='{active: isActive()}' ng-click='makeActive()'>{{rating}}</button>",
     link: function(scope, element, attrs, ctrl) {
       scope.makeActive = function() {
         ctrl.setActiveRating(scope.rating);

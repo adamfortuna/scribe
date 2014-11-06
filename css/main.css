@@ -1,7 +1,10 @@
 .books .book {
   padding: 1em 0;
   border-bottom: 1px solid #b6daf2;
-  min-height: 180px;
+  min-height: 220px;
+}
+.currently-reading .books .book {
+  min-height: inherit;
 }
 .books .book h3 {
   color: #555;
@@ -20,7 +23,10 @@
 .books .book .rating {
   padding: 10px 0 0 28px;
   color: #888;
-  font-size: 16px
+  font-size: 16px;
+  position: absolute;
+  top: 150px;
+  left: 18px;
 }
 .books .book .meta a.author {
   font-size: 12px;

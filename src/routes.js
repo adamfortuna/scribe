@@ -15,7 +15,7 @@ angular.module('Scribe')
     
     // All books ordered by "date finished desc"
     .when('/books', {
-      templateUrl: '/src/pages/reviews/index.html',
+      templateUrl: 'index.html',
       controller: 'ReviewsIndexController',
       controllerAs: 'ctrl',
       resolve: { reviewsPrepService: reviews }
@@ -23,7 +23,7 @@ angular.module('Scribe')
     
     // Single Page for a specific book
     .when('/books/:id', {
-      templateUrl: '/src/pages/reviews/show.html',
+      templateUrl: 'show.html',
       controller: 'ReviewShowController',
       controllerAs: 'ctrl',
       resolve: { reviewsPrepService: reviews }

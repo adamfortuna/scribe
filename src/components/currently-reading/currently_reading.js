@@ -1,5 +1,6 @@
 (function() {
 'use strict';
+/*jshint multistr: true */
 
 angular.module('Scribe')
 .directive('sbCurrentlyReading', function() {
@@ -8,8 +9,14 @@ angular.module('Scribe')
     restrict: 'E',
     scope: {},
     controller: CurrentlyReadingCtrl,
-    controllerAs: 'currentlyReadingCtrl',
-    templateUrl: '/src/components/currently-reading/currently_reading.html'
+    controllerAs: 'ctrl',
+    template: "\
+      <div ng-show='ctrl.isCurrentlyReading()' class='currently-reading'> \
+        <h3>Currently Reading</h3> \
+        <ul class='list-unstyled books'> \
+          <sb-currently-reading-review ng-repeat='review in ctrl.reviews' review='review'></sb-currently-reading-review> \
+        </ul> \
+      </div>"
   };
 });
 
