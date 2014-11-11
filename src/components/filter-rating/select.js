@@ -3,7 +3,9 @@
 /*jshint multistr: true */
 
 angular.module('Scribe')
-.directive('sbRatingSelect', function() {
+.directive('sbFilterRating', FilterRatingDirective);
+
+function FilterRatingDirective() {
   return {
     replace: true,
     restrict: 'E',
@@ -21,9 +23,9 @@ angular.module('Scribe')
         </div> \
       </div>"
   };
-});
+}
 
-var RatingCtrl = function(FilterService) {
+function RatingCtrl(FilterService) {
   this.ratings = [5,4,3,2,1];
 
   this.getActiveRating = function() {
@@ -33,7 +35,7 @@ var RatingCtrl = function(FilterService) {
   this.setActiveRating = function(rating) {
     FilterService.applyFilter('rating', rating);
   };
-};
+}
 RatingCtrl.$inject = ['FilterService'];
 
 })();

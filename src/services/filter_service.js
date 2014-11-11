@@ -11,8 +11,11 @@ function FilterService($routeParams, $location, _) {
       filterMap = {
         'rating': 'rating',
         'genre':  'book.genres',
-        'author': 'book.authors.author.name'
-      };
+        'author': 'book.authors.author.name',
+        'readAfter': 'readAfter',
+        'readBefore': 'readBefore'
+      },
+      exemptFilters = ['readAfter', 'readBefore'];
 
   // On the first load, apply all filters from the URL
   _.each(_.keys(filterMap), function(filterName) {
@@ -28,7 +31,8 @@ function FilterService($routeParams, $location, _) {
     clearFilter: clearFilter,
     getFilter: getFilter,
     hasFilter: hasFilter,
-    availableFilters: _.keys(filterMap)
+    availableFilters: _.keys(filterMap),
+    activeReviews: activeReviews
   };
 
   // Private
@@ -75,6 +79,42 @@ function FilterService($routeParams, $location, _) {
 
   function getFilter(name) {
     return _.deepGet(filter, filterMap[name]);
+  }
+
+  function activeReviews(reviews, filterFilter) {
+    var activeDate,
+        currentReviews = filterFilter(reviews, softFilters());
+
+    _.each(exemptFilters, function(exemptFilter) {
+      if(hasFilter(exemptFilter)) {
+        console.log('hasFilter', exemptFilter);
+
+        if(exemptFilter === 'readAfter') {
+          activeDate = new Date(getFilter(exemptFilter));
+          currentReviews = _.filter(currentReviews, function(review) {
+            return Date.parse(review.read_at) >= activeDate;
+          });
+        } else if(exemptFilter === 'readBefore') {
+          activeDate = new Date(getFilter(exemptFilter));
+          currentReviews = _.filter(currentReviews, function(review) {
+            return Date.parse(review.read_at) <= activeDate;
+          });
+        }
+      }
+    });
+
+    return currentReviews;
+  }
+
+  function softFilters() {
+    var f = _.cloneDeep(filter);
+
+    _.each(exemptFilters, function(exemptFilter) {
+      _.deepDelete(f, filterMap[exemptFilter]);
+      _.deepRemoveEmpty(f);
+    });
+
+    return f;
   }
 }
 FilterService.$inject = ['$routeParams', '$location', '_'];

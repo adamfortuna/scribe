@@ -13,6 +13,7 @@ module.exports = function(grunt) {
           'bower_components/angular-resource/angular-resource.js', 
           'bower_components/lodash/dist/lodash.compat.min.js', 
           'bower_components/lodash-deep/lodash-deep.min.js', 
+          'bower_components/sugar/release/sugar-full.min.js', 
           'src/**/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }

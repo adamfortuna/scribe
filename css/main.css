@@ -84,3 +84,8 @@
 .btn-rating-4:hover, .btn-rating-4.active { background-color: #ded; }
 .btn-rating-5 { background-color: #dfd; }
 .btn-rating-5:hover, .btn-rating-5.active { background-color: #cdc; }
+
+
+.filter-date-read {
+  margin-top: 20px;
+}

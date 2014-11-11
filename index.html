@@ -35,14 +35,15 @@
       <div class='row'>
         <div class='col-md-8 col-sm-8'>
           <ul class='list-unstyled books'>
-            <sb-review ng-repeat='review in ctrl.reviews | filter: ctrl.filter' review='review'></sb-book>
+            <sb-review ng-repeat='review in ctrl.reviews | ReviewsFilter' review='review'></sb-book>
           </ul>
         </div>
 
         <div class='col-md-3 col-md-offset-1 col-sm-4'>
           <h3>Filter Books</h3>
           <sb-filters filter='ctrl.filter'></sb-filters>
-          <sb-rating-select></sb-rating-select>
+          <sb-filter-rating></sb-filter-rating>
+          <sb-filter-date-read></sb-filter-date-read>
           <sb-currently-reading></sb-currently-reading>
         </div>
       </div>
@@ -87,6 +88,7 @@
     <script>
       angular.module('Scribe').config(['settingsProvider', function config(settingsProvider) {
         settingsProvider.setId(2419634);
+        settingsProvider.setApiUrl('http://api.scribe.ka');
       }]);
     </script>
   </body>

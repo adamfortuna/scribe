@@ -20,7 +20,7 @@ function FiltersDirective() {
         <ul class='list-inline filters'> \
           <li ng-repeat='filter in ctrl.availableFilters' ng-if='ctrl.hasFilter(filter)'> \
             <a ng-href='' ng-click='ctrl.clearFilter(filter)' class='label label-primary'> \
-              {{filter | capitalize}}: {{ctrl.getFilter(filter)}} <i class='glyphicon glyphicon-remove'></i> \
+              {{filter | titleize}}: {{ctrl.getFilter(filter)}} <i class='glyphicon glyphicon-remove'></i> \
             </a> \
           </li> \
         </ul> \

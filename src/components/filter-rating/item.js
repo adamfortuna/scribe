@@ -9,7 +9,7 @@ angular.module('Scribe')
 function RatingItem() {
   return {
     restrict: 'E',
-    require: '^sbRatingSelect',
+    require: '^sbFilterRating',
     scope: {
       rating: '='
     },
