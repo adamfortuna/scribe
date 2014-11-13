@@ -12,7 +12,7 @@ function FilterRatingDirective() {
     controller: RatingCtrl,
     controllerAs: 'ctrl',
     bindToController: true,
-    templateUrl: '/src/components/filter-rating/select.html'
+    templateUrl: 'src/components/filter-rating/select.html'
   };
 }
 

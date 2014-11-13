@@ -12,7 +12,7 @@ function FiltersDirective() {
     controller: FiltersController,
     controllerAs: 'ctrl',
     bindToController: true,
-    templateUrl: '/src/components/filters/filters.html'
+    templateUrl: 'src/components/filters/filters.html'
   };
 }
 

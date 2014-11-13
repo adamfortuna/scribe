@@ -9,7 +9,7 @@ function ReviewDirective() {
     replace: true,
     restrict: 'E',
     scope: { review: '=' },
-    templateUrl: '/src/components/reviews/review.html',
+    templateUrl: 'src/components/reviews/review.html',
     controller: ReviewCtrl,
     controllerAs: 'ctrl'
   };

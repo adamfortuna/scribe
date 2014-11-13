@@ -10,7 +10,7 @@ angular.module('Scribe')
     scope: {},
     controller: CurrentlyReadingCtrl,
     controllerAs: 'ctrl',
-    templateUrl: '/src/components/currently-reading/currently_reading.html'
+    templateUrl: 'src/components/currently-reading/currently_reading.html'
   };
 });
 

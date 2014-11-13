@@ -13,7 +13,7 @@ function FilterDateReadDirective() {
     controller: FilterDateReadCtrl,
     controllerAs: 'ctrl',
     bindToController: true,
-    templateUrl: '/src/components/filter-date-read/date_read.html'
+    templateUrl: 'src/components/filter-date-read/date_read.html'
   };
 }
 

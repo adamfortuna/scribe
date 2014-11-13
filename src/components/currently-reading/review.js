@@ -13,7 +13,7 @@ function CurrentlyReadingReview() {
     },
     replace: true,
     controllerAs: 'ctrl',
-    templateUrl: '/src/components/currently-reading/review.html'
+    templateUrl: 'src/components/currently-reading/review.html'
   };
 }
 
