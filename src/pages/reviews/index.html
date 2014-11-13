@@ -1,0 +1,21 @@
+<div>
+  <h2>Books</h2>
+  <ol class='breadcrumb'>
+    <li>Books</li>
+  </ol>
+</div>
+<div class='row'>
+  <div class='col-md-8 col-sm-8'>
+    <ul class='list-unstyled books'>
+      <sb-review ng-repeat='review in filteredReviews = (ctrl.reviews | ReviewsFilter)' review='review'></sb- \book>
+    </ul>
+  </div>
+  <div class='col-md-3 col-md-offset-1 col-sm-4'>
+    <h3>Filter Books</h3> 
+    <p><b>{{filteredReviews.length}}</b> Matching Book(s)</p>
+    <sb-filters filter='ctrl.filter'></sb-filters>
+    <sb-filter-rating></sb-filter-rating>
+    <sb-filter-date-read></sb-filter-date-read>
+    <sb-currently-reading></sb-currently-reading>
+  </div>
+</div>

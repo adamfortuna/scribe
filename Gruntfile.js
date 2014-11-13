@@ -14,7 +14,8 @@ module.exports = function(grunt) {
           'bower_components/lodash/dist/lodash.compat.min.js', 
           'bower_components/lodash-deep/lodash-deep.min.js', 
           'bower_components/sugar/release/sugar-full.min.js', 
-          'src/**/*.js'],
+          'src/**/*.js',
+          'tmp/templates.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -40,9 +41,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    angularTemplateCache: {
+      options: { module: 'Scribe' },
+      defaultOptions: {
+        src: 'src/**/*.html',
+        dest: 'tmp/templates.js',
+        cwd: '.'
+      },
+    },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['concat']
+      files: ['<%= jshint.files %>', 'src/**/*.html'],
+      tasks: ['angularTemplateCache', 'concat']
     }
   });
 
@@ -50,6 +59,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-angular-templatecache');
 
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };

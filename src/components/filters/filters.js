@@ -1,6 +1,5 @@
 (function() {
 'use strict';
-/*jshint multistr: true */
 
 angular.module('Scribe')
 .directive('sbFilters', FiltersDirective);
@@ -8,23 +7,12 @@ angular.module('Scribe')
 function FiltersDirective() {
   return {
     restrict: 'E',
-    scope: {
-      filter: '='
-    },
+    scope: { filter: '=' },
     replace: true,
     controller: FiltersController,
     controllerAs: 'ctrl',
     bindToController: true,
-    template: "\
-      <div> \
-        <ul class='list-inline filters'> \
-          <li ng-repeat='filter in ctrl.availableFilters' ng-if='ctrl.hasFilter(filter)'> \
-            <a ng-href='' ng-click='ctrl.clearFilter(filter)' class='label label-primary'> \
-              {{filter | titleize}}: {{ctrl.getFilter(filter)}} <i class='glyphicon glyphicon-remove'></i> \
-            </a> \
-          </li> \
-        </ul> \
-      </div>"
+    templateUrl: '/src/components/filters/filters.html'
   };
 }
 

@@ -2,3 +2,4 @@ bower_components/
 node_modules/
 dist/scribe.js
 katon.log
+tmp/

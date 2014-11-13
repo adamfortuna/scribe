@@ -10,13 +10,7 @@ angular.module('Scribe')
     scope: {},
     controller: CurrentlyReadingCtrl,
     controllerAs: 'ctrl',
-    template: "\
-      <div ng-show='ctrl.isCurrentlyReading()' class='currently-reading'> \
-        <h3>Currently Reading</h3> \
-        <ul class='list-unstyled books'> \
-          <sb-currently-reading-review ng-repeat='review in ctrl.reviews' review='review'></sb-currently-reading-review> \
-        </ul> \
-      </div>"
+    templateUrl: '/src/components/currently-reading/currently_reading.html'
   };
 });
 

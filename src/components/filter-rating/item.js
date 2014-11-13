@@ -10,9 +10,7 @@ function RatingItem() {
   return {
     restrict: 'E',
     require: '^sbFilterRating',
-    scope: {
-      rating: '='
-    },
+    scope: { rating: '=' },
     replace: true,
     template:
       "<button type='button' class='btn btn-default btn-rating-{{rating}}' ng-class='{active: isActive()}' ng-click='makeActive()'>{{rating}}</button>",

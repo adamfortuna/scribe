@@ -1,6 +1,5 @@
 (function() {
 'use strict';
-/*jshint multistr: true */
 
 angular.module('Scribe')
 .directive('sbFilterRating', FilterRatingDirective);
@@ -13,15 +12,7 @@ function FilterRatingDirective() {
     controller: RatingCtrl,
     controllerAs: 'ctrl',
     bindToController: true,
-    template: "\
-      <div class='rating-select'> \
-        <h4>By Rating</h4> \
-        <div class='btn-toolbar' role='toolbar'> \
-          <div class='btn-group'> \
-            <sb-rating-item ng-repeat='rating in ctrl.ratings' rating='rating'></sb-rating-item> \
-          </div> \
-        </div> \
-      </div>"
+    templateUrl: '/src/components/filter-rating/select.html'
   };
 }
 
