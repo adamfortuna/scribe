@@ -13,20 +13,16 @@ function FilterDateReadDirective() {
     controller: FilterDateReadCtrl,
     controllerAs: 'ctrl',
     bindToController: true,
-    templateUrl: 'src/components/filter-date-read/date_read.html'
+    templateUrl: 'src/components/filter-date-read/filter-date-read.html'
   };
 }
 
+FilterDateReadCtrl.$inject = ['FilterService'];
 function FilterDateReadCtrl(FilterService) {
-  var date;
-  date = FilterService.getFilter('readAfter');
-  if(date) {
-    this.readAfter = new Date(date);
-  }
+  var date = FilterService.getFilter('readAfter');
+  if(date) { this.readAfter = new Date(date); }
   date = FilterService.getFilter('readBefore');
-  if(date) {
-    this.readBefore = new Date(date);
-  }
+  if(date) { this.readBefore = new Date(date); }
 
   this.addFilter = function addFilter(filter, value) {
     if(value) {
@@ -36,6 +32,5 @@ function FilterDateReadCtrl(FilterService) {
     }
   };
 }
-FilterDateReadCtrl.$inject = ['FilterService'];
 
 })();

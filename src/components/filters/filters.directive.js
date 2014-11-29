@@ -16,7 +16,8 @@ function FiltersDirective() {
   };
 }
 
-var FiltersController = function(FilterService) {
+FiltersController.$inject = ['FilterService'];
+function FiltersController(FilterService) {
   this.filter = FilterService.filter;
   this.availableFilters = FilterService.availableFilters;
   this.hasFilter = FilterService.hasFilter;
@@ -24,6 +25,5 @@ var FiltersController = function(FilterService) {
   this.clearFilter = FilterService.clearFilter;
   this.hasFilters = FilterService.hasFilters;
 };
-FiltersController.$inject = ['FilterService'];
 
 })();

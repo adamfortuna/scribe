@@ -1,0 +1,22 @@
+<div>
+  <h2>Books</h2>
+  <ol class='breadcrumb'>
+    <li><a ng-href='/'>Books</a></li>
+    <li><a ng-href='/reports'>Reports</a></li>
+    <li>By Length</li>
+  </ol>
+</div>
+<div class='row'>
+  <div class='col-sm-12'>
+    <span reviews='filteredReviews = (ctrl.reviews | ReviewsFilter)'></span>
+    <sb-report-length reviews='ctrl.reviews'></sb-report-length>
+  </div>
+
+  <div class='col-sm-12'>
+    <h3>Filter Books</h3>
+    <p><b>{{filteredReviews.length}}</b> Matching Book(s)</p>
+    <sb-filters filter='ctrl.filter'></sb-filters>
+    <sb-filter-rating></sb-filter-rating>
+    <sb-filter-date-read></sb-filter-date-read>
+  </div>
+</div>

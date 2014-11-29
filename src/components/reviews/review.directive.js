@@ -15,7 +15,8 @@ function ReviewDirective() {
   };
 }
 
-var ReviewCtrl = function(FilterService) {
+ReviewCtrl.$inject = ['FilterService'];
+function ReviewCtrl(FilterService) {
   var vm = {};
       vm.FilterService = FilterService;
   this.isCurrentlyReading = function(review) {
@@ -25,6 +26,5 @@ var ReviewCtrl = function(FilterService) {
     vm.FilterService.applyFilter(name, value);
   };
 };
-ReviewCtrl.$inject = ['FilterService'];
 
 }());

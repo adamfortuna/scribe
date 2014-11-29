@@ -4,6 +4,7 @@
 angular.module('Scribe')
 .directive('sbSafeHtml', SafeHtmlDirective);
 
+SafeHtmlDirective.$inject = ['$sce'];
 function SafeHtmlDirective($sce) {
   return {
     restrict: 'A',
@@ -24,7 +25,5 @@ function SafeHtmlDirective($sce) {
     }
   };
 }
-
-SafeHtmlDirective.$inject = ['$sce'];
 
 }());

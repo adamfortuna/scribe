@@ -14,6 +14,7 @@ module.exports = function(grunt) {
           'bower_components/lodash/dist/lodash.compat.min.js', 
           'bower_components/lodash-deep/lodash-deep.min.js', 
           'bower_components/sugar/release/sugar-full.min.js', 
+          'bower_components/d3/d3.min.js', 
           'src/**/*.js',
           'tmp/templates.js'],
         dest: 'dist/<%= pkg.name %>.js'

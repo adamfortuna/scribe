@@ -12,10 +12,11 @@ function FilterRatingDirective() {
     controller: RatingCtrl,
     controllerAs: 'ctrl',
     bindToController: true,
-    templateUrl: 'src/components/filter-rating/select.html'
+    templateUrl: 'src/components/filter-rating/filter-rating-select.html'
   };
 }
 
+RatingCtrl.$inject = ['FilterService'];
 function RatingCtrl(FilterService) {
   this.ratings = [5,4,3,2,1];
 
@@ -27,6 +28,5 @@ function RatingCtrl(FilterService) {
     FilterService.applyFilter('rating', rating);
   };
 }
-RatingCtrl.$inject = ['FilterService'];
 
 })();

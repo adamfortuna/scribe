@@ -4,6 +4,7 @@
 angular.module('Scribe')
 .controller('ReviewShowController', ReviewShowController);
 
+ReviewShowController.$inject = ['$routeParams', '_', 'FilterService', 'reviewsPrepService'];
 function ReviewShowController($routeParams, _, FilterService, reviewsPrepService) {
   var vm = this;
   vm.addFilter = FilterService.applyFilter;
@@ -16,7 +17,5 @@ function ReviewShowController($routeParams, _, FilterService, reviewsPrepService
     });
   });
 }
-
-ReviewShowController.$inject = ['$routeParams', '_', 'FilterService', 'reviewsPrepService'];
 
 }());

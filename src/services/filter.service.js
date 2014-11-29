@@ -5,6 +5,7 @@
 angular.module('Scribe')
 .factory('FilterService', FilterService);
 
+FilterService.$inject = ['$routeParams', '$location', '_'];
 function FilterService($routeParams, $location, _) {
   var filter = {},
       location = $location,
@@ -51,7 +52,7 @@ function FilterService($routeParams, $location, _) {
 
   function applyFilter(name, value) {
     _.deepSet(filter, filterMap[name], value);
-    setLocation();
+    //setLocation();
   }
 
   // Todo: Allow for multiple values for each filter
@@ -117,6 +118,5 @@ function FilterService($routeParams, $location, _) {
     return f;
   }
 }
-FilterService.$inject = ['$routeParams', '$location', '_'];
 
 }());

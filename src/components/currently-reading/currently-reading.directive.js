@@ -10,18 +10,17 @@ angular.module('Scribe')
     scope: {},
     controller: CurrentlyReadingCtrl,
     controllerAs: 'ctrl',
-    templateUrl: 'src/components/currently-reading/currently_reading.html'
+    templateUrl: 'src/components/currently-reading/currently-reading.html'
   };
 });
 
-var CurrentlyReadingCtrl = function(ReviewResource) {
+CurrentlyReadingCtrl.$inject = ['ReviewResource'];
+function CurrentlyReadingCtrl(ReviewResource) {
   this.reviews = ReviewResource.query({shelf: 'currently-reading'});
 
   this.isCurrentlyReading = function() {
     return this.reviews.length > 0;
   };
 };
-
-CurrentlyReadingCtrl.$inject = ['ReviewResource'];
 
 })();

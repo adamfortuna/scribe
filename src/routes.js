@@ -6,8 +6,8 @@ var reviews = ['ReviewResource', function(ReviewResource) {
   return ReviewResource.query();
 }];
 
-angular.module('Scribe')
-.config(['$routeProvider', function($routeProvider) {
+angular.module('Scribe').config(routes);
+function routes($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'src/pages/reviews/index.html',
@@ -24,7 +24,16 @@ angular.module('Scribe')
       resolve: { reviewsPrepService: reviews }
     })
 
+    .when('/reports/length', {
+      templateUrl: 'src/pages/reports/length.html',
+      controller: 'ReportsLengthController',
+      controllerAs: 'ctrl',
+      resolve: { reviewsPrepService: reviews }
+    })
+
     .otherwise({redirectTo: '/'});
-}]);
+}
+
+routes.$inject = ['$routeProvider'];
 
 })();
