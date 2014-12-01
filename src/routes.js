@@ -6,6 +6,20 @@ var reviews = ['ReviewResource', function(ReviewResource) {
   return ReviewResource.query();
 }];
 
+var reviewLookup = ['$q', '$routeParams', '_', 'ReviewResource', function($q, $routeParams, _, ReviewResource) {
+  var deferred = $q.defer(),
+      isbn = $routeParams.id;
+
+  ReviewResource.query().$promise.then(function(reviews) {
+    var review = _.find(reviews, function(review) {
+      return review.book.isbn == isbn;
+    });
+
+    deferred.resolve(review);
+  });
+  return deferred.promise;
+}];
+
 angular.module('Scribe').config(routes);
 function routes($routeProvider) {
   $routeProvider
@@ -21,7 +35,7 @@ function routes($routeProvider) {
       templateUrl: 'src/pages/reviews/show.html',
       controller: 'ReviewShowController',
       controllerAs: 'ctrl',
-      resolve: { reviewsPrepService: reviews }
+      resolve: { reviewPrepService: reviewLookup }
     })
 
     .when('/reports/length', {

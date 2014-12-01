@@ -9,5 +9,4 @@ function ReviewsIndexController(reviewsPrepService) {
   this.reviews = reviewsPrepService;
 }
 
-
 }());

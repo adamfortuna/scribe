@@ -4,18 +4,11 @@
 angular.module('Scribe')
 .controller('ReviewShowController', ReviewShowController);
 
-ReviewShowController.$inject = ['$routeParams', '_', 'FilterService', 'reviewsPrepService'];
-function ReviewShowController($routeParams, _, FilterService, reviewsPrepService) {
+ReviewShowController.$inject = ['_', 'FilterService', 'reviewPrepService'];
+function ReviewShowController(_, FilterService, reviewPrepService) {
   var vm = this;
   vm.addFilter = FilterService.applyFilter;
-  vm.review = {};
-  vm.isbn = $routeParams.id;
-
-  reviewsPrepService.$promise.then(function(reviews) {
-    vm.review = _.find(reviews, function(review) {
-      return review.book.isbn == vm.isbn;
-    });
-  });
+  vm.review = reviewPrepService;
 }
 
 }());

@@ -76,3 +76,14 @@
 .filter-date-read {
   margin-top: 20px;
 }
+
+.tip {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 2px 6px;
+  color: #fefefe;
+  position: absolute;
+  z-index: 10;
+  max-width: 200px;
+}
