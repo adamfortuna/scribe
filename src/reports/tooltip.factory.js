@@ -7,7 +7,7 @@ angular.module('Scribe')
 
 Tooltip.$inject = ['$window', 'd3'];
 function Tooltip($window, d3) {
-  
+
   var tooltip = d3.select('body')
     .append('div')
     .attr('class', 'tip')
@@ -32,7 +32,7 @@ function Tooltip($window, d3) {
   }
 
   function hide() {
-    tooltip.style('visibility', 'hidden')
+    tooltip.style('visibility', 'hidden');
   }
 
   function position(x, y) {

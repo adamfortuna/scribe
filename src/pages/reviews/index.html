@@ -7,11 +7,12 @@
 <div class='row'>
   <div class='col-md-8 col-sm-8'>
     <ul class='list-unstyled books'>
+      <li ng-show="!filteredReviews.length">Loading Books...</li>
       <sb-review ng-repeat='review in filteredReviews = (ctrl.reviews | ReviewsFilter)' review='review'></sb-review>
     </ul>
   </div>
   <div class='col-md-3 col-md-offset-1 col-sm-4'>
-    <h3>Filter Books</h3> 
+    <h3>Filter Books</h3>
     <p><b>{{filteredReviews.length}}</b> Matching Book(s)</p>
     <sb-filters filter='ctrl.filter'></sb-filters>
     <sb-filter-rating></sb-filter-rating>

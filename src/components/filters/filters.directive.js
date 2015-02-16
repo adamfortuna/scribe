@@ -24,6 +24,6 @@ function FiltersController(FilterService) {
   this.getFilter = FilterService.getFilter;
   this.clearFilter = FilterService.clearFilter;
   this.hasFilters = FilterService.hasFilters;
-};
+}
 
 })();

@@ -21,8 +21,8 @@ ReportLengthController.$inject = ['LengthReport'];
 function ReportLengthController(LengthReport) {
   this.graph = function(el, reviews) {
     this.lengthReport = new LengthReport(el, reviews);
-  }
-};
+  };
+}
 
 function ReportLengthLink(scope, el, attrs, controller) {
   var listener = scope.$watch(function() {

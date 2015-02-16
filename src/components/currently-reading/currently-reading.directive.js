@@ -21,6 +21,6 @@ function CurrentlyReadingCtrl(ReviewResource) {
   this.isCurrentlyReading = function() {
     return this.reviews.length > 0;
   };
-};
+}
 
 })();

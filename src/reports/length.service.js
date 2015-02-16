@@ -11,11 +11,11 @@ function LengthReportFactory(_, d3, tooltip) {
   return LengthReport;
 
   function LengthReport(_el, _data) {
-    data = _data
+    data = _data;
     el = _el;
     setupGraph();
     drawGraph();
-  };
+  }
 
   LengthReport.prototype.setupGraph = setupGraph;
   LengthReport.prototype.drawGraph = drawGraph;
@@ -77,7 +77,7 @@ function LengthReportFactory(_, d3, tooltip) {
         r: graph.xScale.rangeBand(),
         fill: function(d) { return graph.colorScale(+d.rating); },
         title: function(d) {
-          return d.book.title + ' is ' + +d.book.num_pages + 'pages long.';
+          return d.book.title + ' is ' + (+d.book.num_pages) + 'pages long.';
         },
         stroke: function(d) {
           if(+d.rating === 1) { return 'red'; }

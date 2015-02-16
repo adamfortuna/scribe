@@ -25,6 +25,6 @@ function ReviewCtrl(FilterService) {
   this.addFilter = function(name, value) {
     vm.FilterService.applyFilter(name, value);
   };
-};
+}
 
 }());
