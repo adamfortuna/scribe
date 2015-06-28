@@ -22,7 +22,7 @@
     <div class='shelves' ng-if='ctrl.user.shelves.length > 0'>
       <h3>Shelves</h3>
       <ul class='list-unstyled'>
-        <li ng-repeat='shelf in ctrl.user.shelves'>
+        <li ng-repeat='shelf in ctrl.user.shelves' ng-if='shelf.books_count > 0'>
           <a ng-href='#/shelf/{{shelf.name}}'>{{shelf.name | titleize}}</a> <span class='badge'>{{shelf.books_count}}</span>
         </li>
       </ul>
