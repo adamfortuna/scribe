@@ -1,7 +1,8 @@
 <div>
-  <h2>Books</h2>
+  <h2><span ng-if='ctrl.user.name'>{{ctrl.user.name}}'s </span>Books</h2>
   <ol class='breadcrumb'>
-    <li>Books</li>
+    <li><a ng-href='#/'>Books</a></li>
+    <li ng-if='ctrl.shelf'>{{ctrl.shelf | titleize}}</li>
   </ol>
 </div>
 <div class='row'>
@@ -14,9 +15,17 @@
   <div class='col-md-3 col-md-offset-1 col-sm-4'>
     <h3>Filter Books</h3>
     <p><b>{{filteredReviews.length}}</b> Matching Book(s)</p>
-    <sb-filters filter='ctrl.filter'></sb-filters>
+    <sb-filters filter='ctrl.filter' shelf='ctrl.shelf'></sb-filters>
     <sb-filter-rating></sb-filter-rating>
     <sb-filter-date-read></sb-filter-date-read>
-    <sb-currently-reading></sb-currently-reading>
+
+    <div class='shelves' ng-if='ctrl.user.shelves.length > 0'>
+      <h3>Shelves</h3>
+      <ul class='list-unstyled'>
+        <li ng-repeat='shelf in ctrl.user.shelves'>
+          <a ng-href='#/shelf/{{shelf.name}}'>{{shelf.name | titleize}}</a> <span class='badge'>{{shelf.books_count}}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

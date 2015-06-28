@@ -7,7 +7,10 @@ angular.module('Scribe')
 function FiltersDirective() {
   return {
     restrict: 'E',
-    scope: { filter: '=' },
+    scope: {
+      filter: '=',
+      shelf: '='
+    },
     replace: true,
     controller: FiltersController,
     controllerAs: 'ctrl',
@@ -24,6 +27,11 @@ function FiltersController(FilterService) {
   this.getFilter = FilterService.getFilter;
   this.clearFilter = FilterService.clearFilter;
   this.hasFilters = FilterService.hasFilters;
+
+  if(FilterService.shelf !== this.shelf) {
+    FilterService.clearFilters();
+    FilterService.shelf = this.shelf;
+  }
 }
 
 })();

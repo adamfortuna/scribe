@@ -33,7 +33,8 @@ function FilterService($routeParams, $location, _) {
     getFilter: getFilter,
     hasFilter: hasFilter,
     availableFilters: _.keys(filterMap),
-    activeReviews: activeReviews
+    activeReviews: activeReviews,
+    clearFilters: clearFilters
   };
 
   // Private
@@ -41,7 +42,7 @@ function FilterService($routeParams, $location, _) {
   // Are any filters active?
   function hasFilters() {
     return _.any(filterMap, function(filterName) {
-      hasFilter(name);      
+      hasFilter(name);
     });
   }
 
@@ -52,7 +53,7 @@ function FilterService($routeParams, $location, _) {
 
   function applyFilter(name, value) {
     _.deepSet(filter, filterMap[name], value);
-    //setLocation();
+    setLocation();
   }
 
   // Todo: Allow for multiple values for each filter
@@ -64,8 +65,14 @@ function FilterService($routeParams, $location, _) {
     setLocation();
   }
 
+  function clearFilters() {
+    _.forEach(filterMap, function(i, key) {
+      clearFilter(key);
+    });
+  }
+
   function setLocation() {
-    location.url('/?'+queryString());
+    location.url(location.$$path+'?'+queryString());
   }
 
   function queryString() {
