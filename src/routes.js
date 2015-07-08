@@ -6,7 +6,7 @@ var reviewsPrepService = ['ReviewResource', function(ReviewResource) {
     return ReviewResource.query();
 }];
 
-var shelfPrepService = ['ReviewResource', '$route', function(ReviewResource, $route) {
+var shelfPrepService = ['$route', 'ReviewResource', function($route, ReviewResource) {
   return ReviewResource.query({shelf: $route.current.params.shelf});
 }];
 
@@ -14,18 +14,8 @@ var userPrepService = ['UserResource', 'settings', function(UserResource, settin
   return UserResource.get({ id: settings.id });
 }];
 
-var reviewLookup = ['$q', '$routeParams', '_', 'ReviewResource', function($q, $routeParams, _, ReviewResource) {
-  var deferred = $q.defer(),
-      isbn = $routeParams.id;
-
-  ReviewResource.query().$promise.then(function(reviews) {
-    var review = _.find(reviews, function(review) {
-      return review.book.isbn == isbn;
-    });
-
-    deferred.resolve(review);
-  });
-  return deferred.promise;
+var reviewLookupPrepService = ['$route', 'ReviewResource', function($route, ReviewResource) {
+  return ReviewResource.get({id: $route.current.params.id});
 }];
 
 angular.module('Scribe').config(routes);
@@ -49,7 +39,7 @@ function routes($routeProvider) {
       templateUrl: 'src/pages/reviews/show.html',
       controller: 'ReviewShowController',
       controllerAs: 'ctrl',
-      resolve: { reviewPrepService: reviewLookup, userPrepService: userPrepService }
+      resolve: { reviewsPrepService: reviewsPrepService, reviewLoopupService: reviewLookupPrepService, userPrepService: userPrepService }
     })
 
     .when('/reports/length', {
