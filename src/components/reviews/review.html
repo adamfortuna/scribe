@@ -15,7 +15,7 @@
         {{review.book.authors.author.name}}
       </a>
       <span class='date-read' ng-if='review.read_at || review.started_at'>
-        <a href='#/books/{{review.book.isbn}}'>
+        <a ng-href='#/books/{{review.book.isbn || "id-"+review.book.id}}'>
           <span ng-if='review.read_at && review.started_at'>
             Read from {{ review.started_at | dateify | date: 'MMMM d, yyyy'}} to {{review.read_at | dateify | date: 'MMMM d, yyyy'}}.
           </span>
