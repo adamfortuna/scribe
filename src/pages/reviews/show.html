@@ -2,14 +2,14 @@
   <h2>Books</h2>
   <ol class='breadcrumb'>
     <li><a href='#/books'>Books</a></li>
-    <li class='active'>{{ctrl.review.book.title}}</li>
+    <li class='active'>{{ctrl.review.book.title}}<span ng-show="!ctrl.review.book">Loading...</span></li>
   </ol>
 </div>
 <div class='row'>
   <div class='col-md-8 col-sm-8'>
     <ul class='list-unstyled books'>
-      <li ng-show="!ctrl.review">Loading Books...</li>
-      <sb-review review='ctrl.review'></sb-review>
+      <li ng-show="!ctrl.review.book">Loading...</li>
+      <sb-review review='ctrl.review' ng-show="ctrl.review.book"></sb-review>
     </ul>
   </div>
   <div class='col-md-3 col-md-offset-1 col-sm-4'>
