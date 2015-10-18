@@ -24,6 +24,7 @@
     <h3>Filter Books</h3>
     <p ng-if='ctrl.bookPagesCount(totalBooksCount) > 0'>Page {{ctrl.getPage()}} of {{ctrl.bookPagesCount(totalBooksCount)}}</p>
     <p><b>{{filteredReviews.length}}</b> of <span>{{totalBooksCount}}</span> Matching Book(s)</p>
+    <p>Read <b>{{(ctrl.reviews | ReadFilter).length}}</b> of <span>{{totalBooksCount}} Books(s)</span></p>
     <sb-filters filter='ctrl.filter' shelf='ctrl.getShelf()'></sb-filters>
     <sb-filter-rating></sb-filter-rating>
     <sb-filter-date-read></sb-filter-date-read>
