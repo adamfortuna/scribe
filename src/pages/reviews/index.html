@@ -1,4 +1,5 @@
 <div>
+  <span style='display:none;'>{{totalBooksCount = (ctrl.reviews | ReviewsFilter).length}}</span>
   <h2><span ng-if='ctrl.user.name'>{{ctrl.user.name}}'s </span>Books</h2>
   <ol class='breadcrumb'>
     <li><a ng-href='#/'>Books</a></li>
@@ -9,13 +10,21 @@
   <div class='col-md-8 col-sm-8'>
     <ul class='list-unstyled books'>
       <li ng-show="!filteredReviews.length">Loading Books...</li>
-      <sb-review ng-repeat='review in filteredReviews = (ctrl.reviews | ReviewsFilter)' review='review'></sb-review>
+      <sb-review ng-repeat='review in filteredReviews = (ctrl.reviews | ReviewsFilter | limitTo:30:ctrl.offset())' review='review'></sb-review>
+    </ul>
+
+    <ul class='pagination' ng-if='ctrl.bookPagesCount(totalBooksCount) > 1'>
+      <p><b>Jump to a Page</b></p>
+      <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
+        <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>
+      </li>
     </ul>
   </div>
   <div class='col-md-3 col-md-offset-1 col-sm-4'>
     <h3>Filter Books</h3>
-    <p><b>{{filteredReviews.length}}</b> Matching Book(s)</p>
-    <sb-filters filter='ctrl.filter' shelf='ctrl.shelf'></sb-filters>
+    <p ng-if='ctrl.bookPagesCount(totalBooksCount) > 0'>Page {{ctrl.getPage()}} of {{ctrl.bookPagesCount(totalBooksCount)}}</p>
+    <p><b>{{filteredReviews.length}}</b> of <span>{{totalBooksCount}}</span> Matching Book(s)</p>
+    <sb-filters filter='ctrl.filter' shelf='ctrl.getShelf()'></sb-filters>
     <sb-filter-rating></sb-filter-rating>
     <sb-filter-date-read></sb-filter-date-read>
 
@@ -23,9 +32,10 @@
       <h3>Shelves</h3>
       <ul class='list-unstyled'>
         <li ng-repeat='shelf in ctrl.user.shelves' ng-if='shelf.books_count > 0'>
-          <a ng-href='#/shelf/{{shelf.name}}'>{{shelf.name | titleize}}</a> <span class='badge'>{{shelf.books_count}}</span>
+          <a href='javascript:void(0)' ng-click='ctrl.setPage(1);ctrl.setShelf(shelf.name)'>{{shelf.name | titleize}}</a> <span class='badge'>{{shelf.books_count}}</span>
         </li>
       </ul>
     </div>
+
   </div>
 </div>

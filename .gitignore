@@ -3,3 +3,4 @@ node_modules/
 dist/scribe.js
 katon.log
 tmp/
+npm-debug.log

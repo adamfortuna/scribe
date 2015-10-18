@@ -16,6 +16,8 @@ function FilterService($routeParams, $location, _) {
         'readAfter': 'readAfter',
         'readBefore': 'readBefore'
       },
+      page,
+      shelf,
       exemptFilters = ['readAfter', 'readBefore'];
 
   // On the first load, apply all filters from the URL
@@ -34,7 +36,11 @@ function FilterService($routeParams, $location, _) {
     hasFilter: hasFilter,
     availableFilters: _.keys(filterMap),
     activeReviews: activeReviews,
-    clearFilters: clearFilters
+    clearFilters: clearFilters,
+    setPage: setPage,
+    setShelf: setShelf,
+    getPage: getPage,
+    getShelf: getShelf
   };
 
   // Private
@@ -72,7 +78,7 @@ function FilterService($routeParams, $location, _) {
   }
 
   function setLocation() {
-    location.url('/books?'+queryString());
+    location.url('/shelf/'+shelf+'?'+queryString());
   }
 
   function queryString() {
@@ -81,6 +87,10 @@ function FilterService($routeParams, $location, _) {
         return name+'='+_.deepGet(filter, filterMap[name]);
       }
     });
+
+    if(page > 0) {
+      query.push('page='+page);
+    }
 
     return _.compact(query).join('&');
   }
@@ -112,6 +122,24 @@ function FilterService($routeParams, $location, _) {
     });
 
     return currentReviews;
+  }
+
+  function setPage(_page) {
+    page = _page;
+    setLocation();
+  }
+
+  function setShelf(_shelf) {
+    shelf = _shelf;
+    setLocation();
+  }
+
+  function getPage() {
+    return page;
+  }
+
+  function getShelf() {
+    return shelf;
   }
 
   function softFilters() {
