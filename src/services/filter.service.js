@@ -5,8 +5,8 @@
 angular.module('Scribe')
 .factory('FilterService', FilterService);
 
-FilterService.$inject = ['$routeParams', '$location', '_'];
-function FilterService($routeParams, $location, _) {
+FilterService.$inject = ['$location', '_'];
+function FilterService($location, _) {
   var filter = {},
       location = $location,
       filterMap = {
@@ -19,13 +19,6 @@ function FilterService($routeParams, $location, _) {
       page,
       shelf,
       exemptFilters = ['readAfter', 'readBefore'];
-
-  // On the first load, apply all filters from the URL
-  _.each(_.keys(filterMap), function(filterName) {
-    if($routeParams[filterName]) {
-      applyFilter(filterName, $routeParams[filterName]);
-    }
-  });
 
   return {
     filter: filter,
@@ -40,7 +33,8 @@ function FilterService($routeParams, $location, _) {
     setPage: setPage,
     setShelf: setShelf,
     getPage: getPage,
-    getShelf: getShelf
+    getShelf: getShelf,
+    setParams: setParams
   };
 
   // Private
@@ -79,6 +73,20 @@ function FilterService($routeParams, $location, _) {
 
   function setLocation() {
     location.url('/shelf/'+shelf+'?'+queryString());
+    if(currentYPosition() > 160) {
+      document.getElementById('books--top').scrollIntoView();
+    }
+  }
+
+  function currentYPosition() {
+    // Firefox, Chrome, Opera, Safari
+    if (self.pageYOffset) return self.pageYOffset;
+    // Internet Explorer 6 - standards mode
+    if (document.documentElement && document.documentElement.scrollTop)
+        return document.documentElement.scrollTop;
+    // Internet Explorer 6, 7 and 8
+    if (document.body.scrollTop) return document.body.scrollTop;
+    return 0;
   }
 
   function queryString() {
@@ -105,7 +113,6 @@ function FilterService($routeParams, $location, _) {
 
     _.each(exemptFilters, function(exemptFilter) {
       if(hasFilter(exemptFilter)) {
-        console.log('hasFilter', exemptFilter);
 
         if(exemptFilter === 'readAfter') {
           activeDate = new Date(getFilter(exemptFilter));
@@ -132,6 +139,20 @@ function FilterService($routeParams, $location, _) {
   function setShelf(_shelf) {
     shelf = _shelf;
     setLocation();
+  }
+
+  function setParams(params) {
+    page = params.page || 1;
+    shelf = params.shelf || 'read';
+
+    // On the first load, apply all filters from the URL
+    _.each(_.keys(filterMap), function(_filter) {
+      if(params[_filter]) {
+        _.deepSet(filter, _filter, params[_filter]);
+      }
+    });
+
+    console.log(filter);
   }
 
   function getPage() {

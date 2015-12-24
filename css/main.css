@@ -87,3 +87,12 @@
   z-index: 10;
   max-width: 200px;
 }
+
+
+.pagination {
+  margin: 0;
+}
+.pagination--wrapper p.pull-left {
+  margin-right: 20px;
+  line-height: 32px;
+}

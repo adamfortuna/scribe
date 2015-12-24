@@ -28,7 +28,7 @@ function FiltersController(FilterService) {
   this.clearFilter = FilterService.clearFilter;
   this.hasFilters = FilterService.hasFilters;
 
-  if(FilterService.shelf !== this.shelf) {
+  if(FilterService.getShelf() !== this.shelf) {
     FilterService.clearFilters();
     FilterService.shelf = this.shelf;
   }

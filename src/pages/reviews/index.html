@@ -8,17 +8,29 @@
 </div>
 <div class='row'>
   <div class='col-md-8 col-sm-8'>
+    <div ng-if='ctrl.bookPagesCount(totalBooksCount) > 1' class='pagination--wrapper'>
+      <p class='pull-left'><b>Jump to a Page</b></p>
+      <ul class='pagination'>
+        <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
+          <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>
+        </li>
+      </ul>
+    </div>
+    <a id='books--top'></a>
+
     <ul class='list-unstyled books'>
       <li ng-show="!filteredReviews.length">Loading Books...</li>
       <sb-review ng-repeat='review in filteredReviews = (ctrl.reviews | ReviewsFilter | limitTo:30:ctrl.offset())' review='review'></sb-review>
     </ul>
 
-    <ul class='pagination' ng-if='ctrl.bookPagesCount(totalBooksCount) > 1'>
-      <p><b>Jump to a Page</b></p>
-      <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
-        <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>
-      </li>
-    </ul>
+    <div ng-if='ctrl.bookPagesCount(totalBooksCount) > 1' class='pagination--wrapper'>
+      <p class='pull-left'><b>Jump to a Page</b></p>
+      <ul class='pagination'>
+        <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
+          <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class='col-md-3 col-md-offset-1 col-sm-4'>
     <h3>Filter Books</h3>

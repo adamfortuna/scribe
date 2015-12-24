@@ -6,8 +6,7 @@ angular.module('Scribe')
 
 ReviewsIndexController.$inject = ['$routeParams', 'FilterService', 'reviewsPrepService', 'userPrepService'];
 function ReviewsIndexController($routeParams, FilterService, reviewsPrepService, userPrepService) {
-  FilterService.setPage($routeParams.page || 1);
-  FilterService.setShelf($routeParams.shelf || 'read');
+  FilterService.setParams($routeParams);
 
   this.reviews = reviewsPrepService;
   this.user = userPrepService;
