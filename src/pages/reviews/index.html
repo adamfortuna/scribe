@@ -8,15 +8,14 @@
 </div>
 <div class='row'>
   <div class='col-md-8 col-sm-8'>
+    <a id='books--top'></a>
     <div ng-if='ctrl.bookPagesCount(totalBooksCount) > 1' class='pagination--wrapper'>
-      <p class='pull-left'><b>Jump to a Page</b></p>
       <ul class='pagination'>
         <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
           <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>
         </li>
       </ul>
     </div>
-    <a id='books--top'></a>
 
     <ul class='list-unstyled books'>
       <li ng-show="!filteredReviews.length">Loading Books...</li>
@@ -24,7 +23,6 @@
     </ul>
 
     <div ng-if='ctrl.bookPagesCount(totalBooksCount) > 1' class='pagination--wrapper'>
-      <p class='pull-left'><b>Jump to a Page</b></p>
       <ul class='pagination'>
         <li ng-repeat='page in ctrl.bookPages(totalBooksCount) track by $index' ng-class='{active: ctrl.isActivePage($index+1) }'>
           <a href='javascript:void(0)' ng-click='ctrl.setPage($index+1)'>{{$index+1}}</a>

@@ -73,7 +73,7 @@ function FilterService($location, _) {
 
   function setLocation() {
     location.url('/shelf/'+shelf+'?'+queryString());
-    if(currentYPosition() > 160) {
+    if(currentYPosition() > 180) {
       document.getElementById('books--top').scrollIntoView();
     }
   }
