@@ -1,7 +1,9 @@
 (function() {
 'use strict';
 
-_.mixin({ 'deepDelete': deepDelete });
+$window.lodash = _;
+
+$window.lodash.mixin({ 'deepDelete': deepDelete });
 function deepDelete(obj, keys) {
   var property,
       properties = _.isArray(keys) ? keys : keys.split('.');
@@ -17,10 +19,10 @@ function deepDelete(obj, keys) {
   }
 }
 
-_.mixin({ 'deepRemoveEmpty': deepRemoveEmpty });
+$window.lodash.mixin({ 'deepRemoveEmpty': deepRemoveEmpty });
 function deepRemoveEmpty(root, undef) {
   var removeProps;
-  removeProps = function (obj, key, parent) {      
+  removeProps = function (obj, key, parent) {
     var i, value, isFullyEmpty = true;
     if (_.isArray(obj)) {
       //.length not cached on purpose
@@ -62,7 +64,7 @@ function deepRemoveEmpty(root, undef) {
 angular.module('Scribe')
 .factory('_', ['$window',
   function($window) {
-    return $window._;
+    return $window.lodash;
   }
 ]);
 
