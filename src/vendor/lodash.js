@@ -1,9 +1,9 @@
 (function() {
 'use strict';
 
-$window.lodash = _;
+window.lodash = _;
 
-$window.lodash.mixin({ 'deepDelete': deepDelete });
+window.lodash.mixin({ 'deepDelete': deepDelete });
 function deepDelete(obj, keys) {
   var property,
       properties = _.isArray(keys) ? keys : keys.split('.');
@@ -19,7 +19,7 @@ function deepDelete(obj, keys) {
   }
 }
 
-$window.lodash.mixin({ 'deepRemoveEmpty': deepRemoveEmpty });
+window.lodash.mixin({ 'deepRemoveEmpty': deepRemoveEmpty });
 function deepRemoveEmpty(root, undef) {
   var removeProps;
   removeProps = function (obj, key, parent) {
